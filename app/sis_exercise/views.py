@@ -100,11 +100,13 @@ class ElasticSearchAPIView(APIView):
             serializer = self.serializer_class(list(response.hits), many=True)
             results = serializer.data
 
-            concatenated_text = " ".join(
-                f"{result['title']} {result['abstract']}" for result in results
-            )
+            summary = ""
+            if results:
+                concatenated_text = " ".join(
+                    f"{result['title']} {result['abstract']}" for result in results
+                )
 
-            summary = mock_openai_summarize(concatenated_text)
+                summary = mock_openai_summarize(concatenated_text)
 
             return DRFResponse({
                 "results": results,
