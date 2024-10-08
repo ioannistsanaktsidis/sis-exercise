@@ -7,6 +7,10 @@ django_extensions==3.2.3
 djangorestframework==3.14.0
 django-filter==23.3
 Markdown==3.5.1
+requests==2.26.0
+# celery==5.2.3
+# redis==5.0.0
+# django-celery-beat==2.7.0
 
 # Local development
 ipython
