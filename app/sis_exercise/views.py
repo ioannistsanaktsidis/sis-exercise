@@ -14,7 +14,12 @@ from rest_framework.views import APIView
 
 from sis_exercise.exceptions import APIViewError
 from sis_exercise.serializers import SearchQuerySerializer
+from api.views import LiteratureDocument
+from api.serializers import LiteratureSerializer
 
+
+def mock_openai_summarize(text):
+    return "This is a summary of the provided search results."
 
 class IndexRedirectView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
@@ -93,9 +98,27 @@ class ElasticSearchAPIView(APIView):
             response = search.execute()
 
             serializer = self.serializer_class(list(response.hits), many=True)
-            return DRFResponse(serializer.data, status=status.HTTP_200_OK)
+            results = serializer.data
+
+            concatenated_text = " ".join(
+                f"{result['title']} {result['abstract']}" for result in results
+            )
+
+            summary = mock_openai_summarize(concatenated_text)
+
+            return DRFResponse({
+                "results": results,
+                "summary": summary
+            }, status=status.HTTP_200_OK)
         except Exception as e:
             return DRFResponse(
                 f"Error during fetching data: {str(e)}",
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
+
+class SearchView(ElasticSearchAPIView):
+    serializer_class = LiteratureSerializer
+    document_class = LiteratureDocument
+
+    def elasticsearch_query_expression(self, query):
+        return Q("multi_match", query=query, fields=["title"])
