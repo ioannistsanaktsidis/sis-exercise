@@ -1,6 +1,7 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from django.http import HttpResponse
 from django_elasticsearch_dsl_drf.viewsets import DocumentViewSet
 from django_elasticsearch_dsl_drf.filter_backends import (
     FilteringFilterBackend,
@@ -12,7 +13,6 @@ from django_elasticsearch_dsl_drf.filter_backends import (
 from api.serializers import LiteratureSerializer
 from api.documents import LiteratureDocument
 from api.models import Literature
-
 
 class LiteratureDocumentViewSet(DocumentViewSet):
     document = LiteratureDocument

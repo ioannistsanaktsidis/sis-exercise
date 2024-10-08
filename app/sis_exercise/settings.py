@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "django_elasticsearch_dsl",
     "django_elasticsearch_dsl_drf",
+    # 'django_celery_beat',
     # Local apps
     "api",
 ]
@@ -148,3 +149,16 @@ ELASTICSEARCH_DSL = {
         "hosts": ["http://elasticsearch:9200"],
     },
 }
+
+# Celery Configuration Options
+# CELERY_BROKER_URL = 'redis://redis:6379/0'
+# CELERY_ACCEPT_CONTENT = ['json']
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
+
+# CELERY_BEAT_SCHEDULE = {
+#     'run-every-day': {
+#         'task': 'api.tasks.harvest_hep_data',
+#         'schedule': 5.0,  # 86400 seconds = 24 hours
+#     },
+# }
