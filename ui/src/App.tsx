@@ -84,7 +84,7 @@ function App() {
             {results.length > 0 ? (
               <ResultsList results={results} />
             ) :
-              <NoResultsMessage show={hasSearched && !loading} />
+              <NoResultsMessage show={hasSearched && !loading && !error} />
             }
             {results.length < total && results.length > 0 && (
               <div style={{ textAlign: 'center', marginTop: '20px' }}>
