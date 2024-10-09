@@ -69,11 +69,11 @@ function App() {
               onChange={(e) => setSearchTerm(e.target.value)}
               onSearch={onSearch}
             />
+            {loading && <Spin size="large" style={{ display: 'block', margin: '20px auto' }} data-testid="loading-spinner" />}
             {error && <Alert message={error} type="error" showIcon style={{ marginTop: '20px' }} />}
             <SummaryCard summary={summary} />
           </div>
         </div>
-        {loading && <Spin size="large" style={{ display: 'block', margin: '20px auto' }} />}
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <div style={{ width: '80%' }}>
             {total > 0 && (
