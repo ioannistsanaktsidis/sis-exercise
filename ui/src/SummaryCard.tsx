@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "antd";
 
-interface SummaryCardProps {
+type SummaryCardProps = {
   summary: string;
 }
 

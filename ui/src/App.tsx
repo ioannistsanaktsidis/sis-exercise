@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Layout, Input, Spin, Alert, Button } from "antd";
-import "./App.css";
+
 import { SummaryCard } from "./SummaryCard";
 import { NoResultsMessage } from "./NoResultsMessage";
 import { ResultsList } from "./ResultsList";
+
+import "./App.css";
 
 const { Search } = Input;
 const { Header, Content } = Layout;
