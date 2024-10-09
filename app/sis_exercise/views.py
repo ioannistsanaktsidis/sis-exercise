@@ -101,18 +101,9 @@ class ElasticSearchAPIView(APIView):
             results = serializer.data
             total = response.hits.total.value
 
-            summary = ""
-            if results:
-                concatenated_text = " ".join(
-                    f"{result['title']} {result['abstract']}" for result in results
-                )
-
-                summary = mock_openai_summarize(concatenated_text)
-
             return DRFResponse({
                 "total": total,
                 "results": results,
-                "summary": summary
             }, status=status.HTTP_200_OK)
         except Exception as e:
             return DRFResponse(
@@ -126,3 +117,34 @@ class SearchView(ElasticSearchAPIView):
 
     def elasticsearch_query_expression(self, query):
         return Q("multi_match", query=query, fields=["title"])
+
+    def get(self, request, *args, **kwargs):
+        try:
+            parent_response = super().get(request, *args, **kwargs)
+
+            if parent_response.status_code == status.HTTP_200_OK:
+                data = parent_response.data
+
+                summary = ""
+                if data["results"]:
+                    concatenated_text = " ".join(
+                        f"{result['title']}{result['abstract']}" for result in data['results']
+                    )
+
+                    summary = mock_openai_summarize(concatenated_text)
+
+                return DRFResponse({
+                "total": data["total"],
+                "results": data["results"],
+                "summary": summary,
+            }, status=status.HTTP_200_OK)
+            else:
+                return DRFResponse(
+                    f"Error during fetching data: {parent_response.data}",
+                    status=parent_response.status_code
+                )
+        except Exception as e:
+            return DRFResponse(
+                f"Error during fetching data: {str(e)}",
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
