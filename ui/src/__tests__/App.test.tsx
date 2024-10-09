@@ -38,6 +38,7 @@ describe('App', () => {
   it('displays the "No results found" message when there are no search results', async () => {
     (global.fetch as jest.Mock).mockImplementationOnce(() =>
       Promise.resolve({
+        ok: true,
         json: () => Promise.resolve({ results: [], summary: '', total: 0 }),
       })
     );
@@ -56,6 +57,7 @@ describe('App', () => {
   it('displays the "Load More" button when there are more results to load', async () => {
     (global.fetch as jest.Mock).mockImplementationOnce(() =>
       Promise.resolve({
+        ok: true,
         json: () => Promise.resolve({
           results: [
             { title: 'First Result', abstract: 'Abstract 1', publication_date: '2021-01-01' },

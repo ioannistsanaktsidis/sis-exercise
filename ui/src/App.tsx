@@ -38,12 +38,21 @@ function App() {
       const response = await fetch(
         `http://localhost:8000/api/search/${queryParam}`
       );
+
+      if(!response.ok) {
+        throw new Error("An error occurred while fetching search results. Please try again.");
+      }
+
       const data = await response.json();
       setResults((prevResults) => [...prevResults, ...data.results]);
       setSummary(data.summary);
       setTotal(data.total);
       setOffset(newOffset);
     } catch (error) {
+      setResults([]);
+      setSummary("");
+      setTotal(0);
+      setOffset(0);
       setError(
         "An error occurred while fetching search results. Please try again."
       );
