@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import { NoResultsMessage } from './NoResultsMessage';
+import { NoResultsMessage } from '../NoResultsMessage';
 
 describe('NoResultsMessage', () => {
   it('renders the message when show is true', () => {

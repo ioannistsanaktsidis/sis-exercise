@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import App from './App';
+import App from '../App';
 
 global.fetch = jest.fn(() =>
   Promise.resolve({
