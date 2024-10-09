@@ -7,7 +7,7 @@ type SearchResult = {
   publication_date: string;
 }
 
-interface ResultsListProps {
+type ResultsListProps = {
   results: SearchResult[];
 }
 
