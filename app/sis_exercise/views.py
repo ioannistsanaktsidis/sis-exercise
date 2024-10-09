@@ -99,6 +99,7 @@ class ElasticSearchAPIView(APIView):
 
             serializer = self.serializer_class(list(response.hits), many=True)
             results = serializer.data
+            total = response.hits.total.value
 
             summary = ""
             if results:
@@ -109,6 +110,7 @@ class ElasticSearchAPIView(APIView):
                 summary = mock_openai_summarize(concatenated_text)
 
             return DRFResponse({
+                "total": total,
                 "results": results,
                 "summary": summary
             }, status=status.HTTP_200_OK)
