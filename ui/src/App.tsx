@@ -21,6 +21,7 @@ function App() {
   const [error, setError] = useState<string | null>(null);
   const [offset, setOffset] = useState<number>(0);
   const [total, setTotal] = useState<number>(0);
+  const [hasSearched, setHasSearched] = useState<boolean>(false);
 
   const fetchResults = async (value: string, newOffset: number) => {
     setLoading(true);
@@ -43,6 +44,7 @@ function App() {
   const onSearch = (value: string) => {
     setResults([]);
     setOffset(0);
+    setHasSearched(true);
     fetchResults(value, 0);
   };
 
@@ -80,25 +82,29 @@ function App() {
                 <div>{total} results</div>
               </div>
             )}
-            <List
-              itemLayout="vertical"
-              size="large"
-              dataSource={results}
-              renderItem={item => (
-                <List.Item key={item.title}>
-                  <List.Item.Meta
-                    title={item.title}
-                    description={<div style={{ textAlign: 'justify' }}>{item.abstract}</div>}
-                  />
-                  <div style={{ marginTop: '10px', fontStyle: 'italic' }}>
-                    Published on: {new Date(item.publication_date).toLocaleDateString()}
-                  </div>
-                </List.Item>
-              )}
-            />
+            {results.length > 0 ? (
+              <List
+                itemLayout="vertical"
+                size="large"
+                dataSource={results}
+                renderItem={item => (
+                  <List.Item key={item.title}>
+                    <List.Item.Meta
+                      title={item.title}
+                      description={<div style={{ textAlign: 'justify' }}>{item.abstract}</div>}
+                    />
+                    <div style={{ marginTop: '10px', fontStyle: 'italic' }}>
+                      Published on: {new Date(item.publication_date).toLocaleDateString()}
+                    </div>
+                  </List.Item>
+                )}
+              />
+            ) : (
+              hasSearched && !loading && <div style={{ textAlign: 'center', marginTop: '20px' }}>No results found. Please refine your query!</div>
+            )}
             {results.length < total && (
               <div style={{ textAlign: 'center', marginTop: '20px' }}>
-                <Button onClick={loadMore} loading={loading}>Load More</Button>
+                <Button type="primary" onClick={loadMore} loading={loading}>Load More</Button>
               </div>
             )}
           </div>
