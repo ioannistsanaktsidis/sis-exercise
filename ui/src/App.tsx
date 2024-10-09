@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { Layout, List, Input, Spin, Alert, Card, Button } from 'antd';
+import { Layout, Input, Spin, Alert, Button } from 'antd';
 import './App.css';
+import { SummaryCard } from './SummaryCard';
+import { NoResultsMessage } from './NoResultsMessage';
+import { ResultsList } from './ResultsList';
 
 const { Search } = Input;
 const { Header, Content } = Layout;
@@ -67,11 +70,7 @@ function App() {
               onSearch={onSearch}
             />
             {error && <Alert message={error} type="error" showIcon style={{ marginTop: '20px' }} />}
-            {summary && (
-              <Card title="Summary" size="small" style={{ marginTop: '20px' }}>
-                <p>{summary}</p>
-              </Card>
-            )}
+            <SummaryCard summary={summary} />
           </div>
         </div>
         {loading && <Spin size="large" style={{ display: 'block', margin: '20px auto' }} />}
@@ -83,26 +82,11 @@ function App() {
               </div>
             )}
             {results.length > 0 ? (
-              <List
-                itemLayout="vertical"
-                size="large"
-                dataSource={results}
-                renderItem={item => (
-                  <List.Item key={item.title}>
-                    <List.Item.Meta
-                      title={item.title}
-                      description={<div style={{ textAlign: 'justify' }}>{item.abstract}</div>}
-                    />
-                    <div style={{ marginTop: '10px', fontStyle: 'italic' }}>
-                      Published on: {new Date(item.publication_date).toLocaleDateString()}
-                    </div>
-                  </List.Item>
-                )}
-              />
-            ) : (
-              hasSearched && !loading && <div style={{ textAlign: 'center', marginTop: '20px' }}>No results found. Please refine your query!</div>
-            )}
-            {results.length < total && (
+              <ResultsList results={results} />
+            ) :
+              <NoResultsMessage show={hasSearched && !loading} />
+            }
+            {results.length < total && results.length > 0 && (
               <div style={{ textAlign: 'center', marginTop: '20px' }}>
                 <Button type="primary" onClick={loadMore} loading={loading}>Load More</Button>
               </div>
