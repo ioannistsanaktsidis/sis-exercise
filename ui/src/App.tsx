@@ -70,6 +70,8 @@ function App() {
   const onSearch = (value: string) => {
     setResults([]);
     setOffset(0);
+    setSummary("");
+    setTotal(0);
     setHasSearched(true);
     fetchResults(value, 0);
   };
