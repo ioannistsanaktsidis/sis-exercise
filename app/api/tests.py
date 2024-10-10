@@ -1,8 +1,8 @@
 from django.test import TestCase
 from rest_framework import status
+from rest_framework.response import Response
 from unittest.mock import patch
 from api.views import SearchView
-from rest_framework.response import Response
 
 
 class SearchViewTest(TestCase):
