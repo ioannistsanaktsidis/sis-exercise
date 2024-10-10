@@ -4,7 +4,6 @@ from rest_framework.decorators import action
 from django.http import HttpResponse
 from django_elasticsearch_dsl_drf.viewsets import DocumentViewSet
 from django_elasticsearch_dsl_drf.filter_backends import (
-    FilteringFilterBackend,
     OrderingFilterBackend,
     DefaultOrderingFilterBackend,
     SearchFilterBackend,
