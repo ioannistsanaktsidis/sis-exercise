@@ -134,10 +134,10 @@ class SearchView(ElasticSearchAPIView):
                     summary = mock_openai_summarize(concatenated_text)
 
                 return DRFResponse({
-                "total": data["total"],
-                "results": data["results"],
-                "summary": summary,
-            }, status=status.HTTP_200_OK)
+                    "total": data["total"],
+                    "results": data["results"],
+                    "summary": summary,
+                }, status=status.HTTP_200_OK)
             else:
                 return DRFResponse(
                     f"Error during fetching data: {parent_response.data}",
