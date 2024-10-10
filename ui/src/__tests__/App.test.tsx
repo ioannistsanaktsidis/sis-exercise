@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import App from '../App';
+import { ERROR_MESSAGES } from '../errorMessages';
 
 global.fetch = jest.fn(() =>
   Promise.resolve({
@@ -96,7 +97,7 @@ describe('App', () => {
     fireEvent.click(screen.getByText('Search'));
 
     await waitFor(() => {
-      expect(screen.getByText('An error occurred while fetching search results. Please refine your search query.')).toBeInTheDocument();
+      expect(screen.getByText(ERROR_MESSAGES.BAD_REQUEST)).toBeInTheDocument();
     });
   });
 
@@ -116,7 +117,7 @@ describe('App', () => {
     fireEvent.click(screen.getByText('Search'));
 
     await waitFor(() => {
-      expect(screen.getByText('An internal server error occurred. Please try again later.')).toBeInTheDocument();
+      expect(screen.getByText(ERROR_MESSAGES.INTERNAL_SERVER_ERROR)).toBeInTheDocument();
     });
   });
 
@@ -136,7 +137,7 @@ describe('App', () => {
     fireEvent.click(screen.getByText('Search'));
 
     await waitFor(() => {
-      expect(screen.getByText('The requested resource was not found. Please try a different query.')).toBeInTheDocument();
+      expect(screen.getByText(ERROR_MESSAGES.NOT_FOUND)).toBeInTheDocument();
     });
   });
 
@@ -156,7 +157,7 @@ describe('App', () => {
     fireEvent.click(screen.getByText('Search'));
 
     await waitFor(() => {
-      expect(screen.getByText('An unexpected error occurred. Please try again.')).toBeInTheDocument();
+      expect(screen.getByText(ERROR_MESSAGES.UNEXPECTED_ERROR)).toBeInTheDocument();
     });
   });
 });

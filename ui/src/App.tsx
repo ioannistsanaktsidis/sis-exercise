@@ -6,6 +6,8 @@ import { NoResultsMessage } from "./NoResultsMessage";
 import { ResultsList } from "./ResultsList";
 import { getErrorMessage } from "./utils";
 
+import { ERROR_MESSAGES } from "./errorMessages";
+
 import "./App.css";
 
 const { Search } = Input;
@@ -56,9 +58,9 @@ function App() {
       setTotal(0);
       setOffset(0);
       if (error instanceof Error) {
-        setError(error?.message ?? "An unexpected error occurred. Please try again.");
+        setError(error?.message ?? ERROR_MESSAGES.UNEXPECTED_ERROR);
       } else {
-        setError("An unexpected error occurred. Please try again.");
+        setError(ERROR_MESSAGES.UNEXPECTED_ERROR);
       }
     } finally {
       setLoading(false);
