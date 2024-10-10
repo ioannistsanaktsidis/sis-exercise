@@ -12,14 +12,11 @@ from rest_framework import status
 from rest_framework.response import Response as DRFResponse
 from rest_framework.views import APIView
 
-from sis_exercise.exceptions import APIViewError
+from sis_exercise.exceptions import InvalidInputError, InternalServerError
 from sis_exercise.serializers import SearchQuerySerializer
 from api.views import LiteratureDocument
 from api.serializers import LiteratureSerializer
 
-
-def mock_openai_summarize(text):
-    return "This is a summary of the provided search results."
 
 class IndexRedirectView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
@@ -73,10 +70,7 @@ class ElasticSearchAPIView(APIView):
         """
         search_query_serializer = self.query_serializer_class(data=request.GET.dict())
         if not search_query_serializer.is_valid():
-            return DRFResponse(
-                f"Validation error: {search_query_serializer.errors}",
-                status=status.HTTP_400_BAD_REQUEST
-            )
+            raise InvalidInputError(f"Validation error: {search_query_serializer.errors}")
 
         query_data = search_query_serializer.validated_data
         try:
@@ -106,45 +100,4 @@ class ElasticSearchAPIView(APIView):
                 "results": results,
             }, status=status.HTTP_200_OK)
         except Exception as e:
-            return DRFResponse(
-                f"Error during fetching data: {str(e)}",
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
-
-class SearchView(ElasticSearchAPIView):
-    serializer_class = LiteratureSerializer
-    document_class = LiteratureDocument
-
-    def elasticsearch_query_expression(self, query):
-        return Q("multi_match", query=query, fields=["title"])
-
-    def get(self, request, *args, **kwargs):
-        try:
-            parent_response = super().get(request, *args, **kwargs)
-
-            if parent_response.status_code == status.HTTP_200_OK:
-                data = parent_response.data
-
-                summary = ""
-                if data["results"]:
-                    concatenated_text = " ".join(
-                        f"{result['title']}{result['abstract']}" for result in data['results']
-                    )
-
-                    summary = mock_openai_summarize(concatenated_text)
-
-                return DRFResponse({
-                    "total": data["total"],
-                    "results": data["results"],
-                    "summary": summary,
-                }, status=status.HTTP_200_OK)
-            else:
-                return DRFResponse(
-                    f"Error during fetching data: {parent_response.data}",
-                    status=parent_response.status_code
-                )
-        except Exception as e:
-            return DRFResponse(
-                f"Error during fetching data: {str(e)}",
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
+            raise InternalServerError(f"Error during fetching data: {str(e)}")

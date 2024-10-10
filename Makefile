@@ -1,4 +1,4 @@
-.PHONY: build up down attach bootstrap bash shell migrate migrations
+.PHONY: build up down attach bootstrap bash shell migrate migrations test
 build:
 	docker compose build
 
@@ -33,3 +33,6 @@ migrations:
 
 search-index-rebuild:
 	docker exec -it django_app python manage.py search_index --rebuild
+
+test:
+	docker exec -it django_app python manage.py test
