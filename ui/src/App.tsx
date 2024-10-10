@@ -4,8 +4,10 @@ import { Layout, Input, Spin, Alert, Button } from "antd";
 import { SummaryCard } from "./SummaryCard";
 import { NoResultsMessage } from "./NoResultsMessage";
 import { ResultsList } from "./ResultsList";
+import { getErrorMessage } from "./utils";
 
 import "./App.css";
+
 
 const { Search } = Input;
 const { Header, Content } = Layout;
@@ -39,8 +41,9 @@ function App() {
         `http://localhost:8000/api/search/${queryParam}`
       );
 
-      if(!response.ok) {
-        throw new Error("An error occurred while fetching search results. Please try again.");
+      if (!response.ok) {
+        const errorMessage = getErrorMessage(response.status);
+        throw new Error(errorMessage);
       }
 
       const data = await response.json();
@@ -53,9 +56,11 @@ function App() {
       setSummary("");
       setTotal(0);
       setOffset(0);
-      setError(
-        "An error occurred while fetching search results. Please try again."
-      );
+      if (error instanceof Error) {
+        setError(error?.message ?? "An unexpected error occurred. Please try again.");
+      } else {
+        setError("An unexpected error occurred. Please try again.");
+      }
     } finally {
       setLoading(false);
     }
