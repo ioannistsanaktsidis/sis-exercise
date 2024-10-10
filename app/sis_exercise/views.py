@@ -12,7 +12,7 @@ from rest_framework import status
 from rest_framework.response import Response as DRFResponse
 from rest_framework.views import APIView
 
-from sis_exercise.exceptions import ValidationError, InternalServerError
+from sis_exercise.exceptions import InvalidInputError, InternalServerError
 from sis_exercise.serializers import SearchQuerySerializer
 from api.views import LiteratureDocument
 from api.serializers import LiteratureSerializer
@@ -70,7 +70,7 @@ class ElasticSearchAPIView(APIView):
         """
         search_query_serializer = self.query_serializer_class(data=request.GET.dict())
         if not search_query_serializer.is_valid():
-            raise ValidationError(f"Validation error: {search_query_serializer.errors}")
+            raise InvalidInputError(f"Validation error: {search_query_serializer.errors}")
 
         query_data = search_query_serializer.validated_data
         try:
