@@ -8,7 +8,6 @@ import { getErrorMessage } from "./utils";
 
 import "./App.css";
 
-
 const { Search } = Input;
 const { Header, Content } = Layout;
 
