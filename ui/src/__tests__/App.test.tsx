@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import App from '../App';
+import { ERROR_MESSAGES } from '../errorMessages';
 
 global.fetch = jest.fn(() =>
   Promise.resolve({
@@ -38,6 +39,7 @@ describe('App', () => {
   it('displays the "No results found" message when there are no search results', async () => {
     (global.fetch as jest.Mock).mockImplementationOnce(() =>
       Promise.resolve({
+        ok: true,
         json: () => Promise.resolve({ results: [], summary: '', total: 0 }),
       })
     );
@@ -56,6 +58,7 @@ describe('App', () => {
   it('displays the "Load More" button when there are more results to load', async () => {
     (global.fetch as jest.Mock).mockImplementationOnce(() =>
       Promise.resolve({
+        ok: true,
         json: () => Promise.resolve({
           results: [
             { title: 'First Result', abstract: 'Abstract 1', publication_date: '2021-01-01' },
@@ -75,6 +78,86 @@ describe('App', () => {
 
     await waitFor(() => {
       expect(screen.getByText('Load More')).toBeInTheDocument();
+    });
+  });
+
+  it('displays an error message when the fetch response is 400', async () => {
+    (global.fetch as jest.Mock).mockImplementationOnce(() =>
+      Promise.resolve({
+        ok: false,
+        status: 400,
+        statusText: 'Bad request',
+      })
+    );
+
+    render(<App />);
+
+    const searchInput = screen.getByPlaceholderText('Search...');
+    fireEvent.change(searchInput, { target: { value: 'error' } });
+    fireEvent.click(screen.getByText('Search'));
+
+    await waitFor(() => {
+      expect(screen.getByText(ERROR_MESSAGES.BAD_REQUEST)).toBeInTheDocument();
+    });
+  });
+
+  it('displays an error message when the fetch response is 500', async () => {
+    (global.fetch as jest.Mock).mockImplementationOnce(() =>
+      Promise.resolve({
+        ok: false,
+        status: 500,
+        statusText: 'Internal Server Error',
+      })
+    );
+
+    render(<App />);
+
+    const searchInput = screen.getByPlaceholderText('Search...');
+    fireEvent.change(searchInput, { target: { value: 'error' } });
+    fireEvent.click(screen.getByText('Search'));
+
+    await waitFor(() => {
+      expect(screen.getByText(ERROR_MESSAGES.INTERNAL_SERVER_ERROR)).toBeInTheDocument();
+    });
+  });
+
+  it('displays an error message when the fetch response is 404', async () => {
+    (global.fetch as jest.Mock).mockImplementationOnce(() =>
+      Promise.resolve({
+        ok: false,
+        status: 404,
+        statusText: 'Not found',
+      })
+    );
+
+    render(<App />);
+
+    const searchInput = screen.getByPlaceholderText('Search...');
+    fireEvent.change(searchInput, { target: { value: 'error' } });
+    fireEvent.click(screen.getByText('Search'));
+
+    await waitFor(() => {
+      expect(screen.getByText(ERROR_MESSAGES.NOT_FOUND)).toBeInTheDocument();
+    });
+  });
+
+  it('displays a default error message when the fetch response is 503', async () => {
+    (global.fetch as jest.Mock).mockImplementationOnce(() =>
+      Promise.resolve({
+        ok: false,
+        status: 503,
+        statusText: 'Service unavailable',
+      })
+    );
+
+    render(<App />);
+
+    const searchInput = screen.getByPlaceholderText('Search...');
+    fireEvent.change(searchInput, { target: { value: 'error' } });
+    fireEvent.click(screen.getByText('Search'));
+
+    await waitFor(() => {
+      expect(screen.getByText(ERROR_MESSAGES.UNEXPECTED_ERROR)).toBeInTheDocument();
     });
   });
 });

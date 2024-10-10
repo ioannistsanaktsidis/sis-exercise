@@ -4,6 +4,9 @@ import { Layout, Input, Spin, Alert, Button } from "antd";
 import { SummaryCard } from "./SummaryCard";
 import { NoResultsMessage } from "./NoResultsMessage";
 import { ResultsList } from "./ResultsList";
+import { getErrorMessage } from "./utils";
+
+import { ERROR_MESSAGES } from "./errorMessages";
 
 import "./App.css";
 
@@ -38,15 +41,27 @@ function App() {
       const response = await fetch(
         `http://localhost:8000/api/search/${queryParam}`
       );
+
+      if (!response.ok) {
+        const errorMessage = getErrorMessage(response.status);
+        throw new Error(errorMessage);
+      }
+
       const data = await response.json();
       setResults((prevResults) => [...prevResults, ...data.results]);
       setSummary(data.summary);
       setTotal(data.total);
       setOffset(newOffset);
     } catch (error) {
-      setError(
-        "An error occurred while fetching search results. Please try again."
-      );
+      setResults([]);
+      setSummary("");
+      setTotal(0);
+      setOffset(0);
+      if (error instanceof Error) {
+        setError(error?.message ?? ERROR_MESSAGES.UNEXPECTED_ERROR);
+      } else {
+        setError(ERROR_MESSAGES.UNEXPECTED_ERROR);
+      }
     } finally {
       setLoading(false);
     }
