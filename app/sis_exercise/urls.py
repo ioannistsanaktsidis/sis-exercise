@@ -18,8 +18,8 @@ from django.urls import include
 from django.urls import path
 
 from rest_framework.routers import DefaultRouter
-from api.views import LiteratureDocumentViewSet
-from sis_exercise.views import IndexRedirectView, SearchView
+from api.views import LiteratureDocumentViewSet, SearchView
+from sis_exercise.views import IndexRedirectView
 
 router = DefaultRouter()
 router.register('api/literature/search', LiteratureDocumentViewSet, basename='api-literature-search',)

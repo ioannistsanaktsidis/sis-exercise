@@ -1,12 +1,12 @@
 from django.test import TestCase
 from unittest.mock import patch
-from sis_exercise.views import SearchView
+from api.views import SearchView
 
 class SearchViewTest(TestCase):
     def setUp(self):
         self.search_view = SearchView()
 
-    @patch('sis_exercise.views.mock_openai_summarize')
+    @patch('api.views.mock_openai_summarize')
     def test_generate_summary(self, mock_summarize):
         # Mock the summarization function
         mock_summarize.return_value = "This is a summary."

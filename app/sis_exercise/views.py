@@ -18,9 +18,6 @@ from api.views import LiteratureDocument
 from api.serializers import LiteratureSerializer
 
 
-def mock_openai_summarize(text):
-    return "This is a summary of the provided search results."
-
 class IndexRedirectView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         return str(reverse("api-search-search"))
@@ -104,54 +101,3 @@ class ElasticSearchAPIView(APIView):
             }, status=status.HTTP_200_OK)
         except Exception as e:
             raise InternalServerError(f"Error during fetching data: {str(e)}")
-
-class SearchView(ElasticSearchAPIView):
-    serializer_class = LiteratureSerializer
-    document_class = LiteratureDocument
-
-
-    def _generate_summary(self, results):
-        if not results:
-            return ""
-
-        concatenated_text = " ".join(
-            f"{result['title']}{result['abstract']}" for result in results
-        )
-
-        return mock_openai_summarize(concatenated_text)
-
-    def elasticsearch_query_expression(self, query):
-        return Q("multi_match", query=query, fields=["title"])
-
-    def get(self, request, *args, **kwargs):
-        try:
-            response = super().get(request, *args, **kwargs)
-
-            if response.status_code == status.HTTP_200_OK:
-                data = response.data
-                summary = self._generate_summary(data["results"])
-
-                return DRFResponse({
-                    "total": data["total"],
-                    "results": data["results"],
-                    "summary": summary,
-                }, status=status.HTTP_200_OK)
-            elif response.status_code == status.HTTP_400_BAD_REQUEST:
-                raise ValidationError(f"Error during fetching data: {response.data}")
-            else:
-                raise InternalServerError(f"Error during fetching data: {response.data}")
-        except ValidationError as e:
-            return DRFResponse(
-                {"error": str(e)},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-        except InternalServerError as e:
-            return DRFResponse(
-                {"error": str(e)},
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
-        except Exception as e:
-            return DRFResponse(
-                {"error": f"Error during fetching data: {str(e)}"},
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
