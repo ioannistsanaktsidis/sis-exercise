@@ -79,4 +79,84 @@ describe('App', () => {
       expect(screen.getByText('Load More')).toBeInTheDocument();
     });
   });
+
+  it('displays an error message when the fetch response is 400', async () => {
+    (global.fetch as jest.Mock).mockImplementationOnce(() =>
+      Promise.resolve({
+        ok: false,
+        status: 400,
+        statusText: 'Bad request',
+      })
+    );
+
+    render(<App />);
+
+    const searchInput = screen.getByPlaceholderText('Search...');
+    fireEvent.change(searchInput, { target: { value: 'error' } });
+    fireEvent.click(screen.getByText('Search'));
+
+    await waitFor(() => {
+      expect(screen.getByText('An error occurred while fetching search results. Please refine your search query.')).toBeInTheDocument();
+    });
+  });
+
+  it('displays an error message when the fetch response is 500', async () => {
+    (global.fetch as jest.Mock).mockImplementationOnce(() =>
+      Promise.resolve({
+        ok: false,
+        status: 500,
+        statusText: 'Internal Server Error',
+      })
+    );
+
+    render(<App />);
+
+    const searchInput = screen.getByPlaceholderText('Search...');
+    fireEvent.change(searchInput, { target: { value: 'error' } });
+    fireEvent.click(screen.getByText('Search'));
+
+    await waitFor(() => {
+      expect(screen.getByText('An internal server error occurred. Please try again later.')).toBeInTheDocument();
+    });
+  });
+
+  it('displays an error message when the fetch response is 404', async () => {
+    (global.fetch as jest.Mock).mockImplementationOnce(() =>
+      Promise.resolve({
+        ok: false,
+        status: 404,
+        statusText: 'Not found',
+      })
+    );
+
+    render(<App />);
+
+    const searchInput = screen.getByPlaceholderText('Search...');
+    fireEvent.change(searchInput, { target: { value: 'error' } });
+    fireEvent.click(screen.getByText('Search'));
+
+    await waitFor(() => {
+      expect(screen.getByText('The requested resource was not found. Please try a different query.')).toBeInTheDocument();
+    });
+  });
+
+  it('displays a default error message when the fetch response is 503', async () => {
+    (global.fetch as jest.Mock).mockImplementationOnce(() =>
+      Promise.resolve({
+        ok: false,
+        status: 503,
+        statusText: 'Service unavailable',
+      })
+    );
+
+    render(<App />);
+
+    const searchInput = screen.getByPlaceholderText('Search...');
+    fireEvent.change(searchInput, { target: { value: 'error' } });
+    fireEvent.click(screen.getByText('Search'));
+
+    await waitFor(() => {
+      expect(screen.getByText('An unexpected error occurred. Please try again.')).toBeInTheDocument();
+    });
+  });
 });
