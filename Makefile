@@ -1,4 +1,4 @@
-.PHONY: build up down attach bootstrap bash shell migrate migrations test
+.PHONY: build up down down-remove attach bootstrap bash shell migrate migrations test
 build:
 	docker compose build
 
@@ -9,6 +9,8 @@ up:
 down:
 	docker compose down
 
+down-remove:
+	docker compose down -v
 
 attach:
 	docker attach django_app

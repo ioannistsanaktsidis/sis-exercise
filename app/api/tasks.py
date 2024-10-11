@@ -19,7 +19,6 @@ def harvest_hep_data():
             literature_data = literature.get('metadata', {})
 
             title = literature_data.get('titles', [{}])[0].get('title', '')
-
             abstract = literature_data.get('abstracts', [{}])[0].get('value', '')
             publication_date_str = literature_data.get('imprints', [{}])[0].get('date', '')
 
