@@ -74,5 +74,3 @@ def harvest_hep_data():
                 )
             else:
                 print("Skipping Literature creation due to missing required fields.")
-    else:
-        print(f"Failed to fetch papers: {response.status_code}")
