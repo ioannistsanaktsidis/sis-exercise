@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from celery.schedules import crontab
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -43,7 +44,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "django_elasticsearch_dsl",
     "django_elasticsearch_dsl_drf",
-    # 'django_celery_beat',
+    'django_celery_beat',
     # Local apps
     "api",
 ]
@@ -157,14 +158,14 @@ ELASTICSEARCH_DSL = {
 }
 
 # Celery Configuration Options
-# CELERY_BROKER_URL = 'redis://redis:6379/0'
-# CELERY_ACCEPT_CONTENT = ['json']
-# CELERY_TASK_SERIALIZER = 'json'
-# CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
+CELERY_BROKER_URL = 'redis://redis:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
 
-# CELERY_BEAT_SCHEDULE = {
-#     'run-every-day': {
-#         'task': 'api.tasks.harvest_hep_data',
-#         'schedule': 5.0,  # 86400 seconds = 24 hours
-#     },
-# }
+CELERY_BEAT_SCHEDULE = {
+    'harvest_hep_data_daily': {
+        'task': 'api.tasks.harvest_hep_data',
+        'schedule': crontab(hour=0, minute=0),
+    },
+}

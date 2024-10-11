@@ -1,7 +1,8 @@
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.decorators import action
+from rest_framework.decorators import action, api_view
 from django.http import HttpResponse
+
 from django_elasticsearch_dsl_drf.viewsets import DocumentViewSet
 from django_elasticsearch_dsl_drf.filter_backends import (
     OrderingFilterBackend,
@@ -13,8 +14,10 @@ from elasticsearch_dsl import Q
 from api.serializers import LiteratureSerializer
 from api.documents import LiteratureDocument
 from api.models import Literature
+from api.tasks import harvest_hep_data
 from sis_exercise.exceptions import InvalidInputError, InternalServerError
 from sis_exercise.views import ElasticSearchAPIView
+
 
 def mock_openai_summarize(text):
     return "This is a summary of the provided search results."
@@ -88,3 +91,9 @@ class SearchView(ElasticSearchAPIView):
                 {"error": f"Error during fetching data: {str(e)}"},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
+
+# View to trigger the task manually
+@api_view(['GET'])
+def trigger_task(request):
+    harvest_hep_data.delay()
+    return Response({'status': 'Task triggered'}, status=status.HTTP_200_OK)
