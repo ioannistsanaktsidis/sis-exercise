@@ -4,7 +4,7 @@ from .models import Literature
 from datetime import datetime
 
 @shared_task
-def harvest_hep_data(request):
+def harvest_hep_data():
     print("Running harvest_hep_data task")
     url = "https://inspirehep.net/api/literature"
     params = {

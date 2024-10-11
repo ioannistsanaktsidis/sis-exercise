@@ -37,18 +37,21 @@ services:
     depends_on:
       - db
 
-  # redis:
-  #   image: "redis:alpine"
+  redis:
+    container_name: redis
+    image: "redis:alpine"
 
-  # celery:
-  #   build:
-  #     context: .
-  #     dockerfile: docker/Dockerfile
-  #   command: celery -A sis_exercise.celery worker --loglevel=info
-  #   volumes:
-  #     - .:/app
-  #   depends_on:
-  #     - redis
+  celery:
+    container_name: celery
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    command: celery -A sis_exercise.celery worker --loglevel=info
+    volumes:
+      - "./app:/app"
+    depends_on:
+      - redis
+      - db
 
   # celery-beat:
   #   build:

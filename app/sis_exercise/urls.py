@@ -18,7 +18,7 @@ from django.urls import include
 from django.urls import path
 
 from rest_framework.routers import DefaultRouter
-from api.views import LiteratureDocumentViewSet, SearchView
+from api.views import LiteratureDocumentViewSet, SearchView, trigger_task
 from sis_exercise.views import IndexRedirectView
 
 router = DefaultRouter()
@@ -27,4 +27,5 @@ router.register('api/literature/search', LiteratureDocumentViewSet, basename='ap
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('api/search/', SearchView.as_view(), name='search'),
+    path('trigger-task/', trigger_task, name='trigger_task'),
 ] + router.urls
