@@ -11,13 +11,14 @@ def harvest_hep_data():
     url = "https://inspirehep.net/api/literature"
     params = {
         'size': 10,
-        'sort': 'mostrecent'
+        'fields': 'titles,abstracts,imprints,arxiv_eprints',
     }
     literature_results = []
     next_url = url
 
     while next_url and len(literature_results) < THRESHOLD:
         try:
+            print(f"Fetching data from: {next_url}")
             response = requests.get(next_url, params=params, verify=False)
             response.raise_for_status()
 
