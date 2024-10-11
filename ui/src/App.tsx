@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Layout, Input, Spin, Alert, Button } from "antd";
+import { Layout, Input, Spin, Alert } from "antd";
 
 import { SummaryCard } from "./components/SummaryCard";
 import { NoResultsMessage } from "./components/NoResultsMessage";
@@ -123,7 +123,12 @@ function App() {
               </div>
             )}
             {results.length > 0 ? (
-              <ResultsList results={results} total={total} loadMoreLoading={loadMoreLoading} loadMore={loadMore} />
+              <ResultsList
+                results={results}
+                total={total}
+                loadMoreLoading={loadMoreLoading}
+                loadMore={loadMore}
+              />
             ) : (
               <NoResultsMessage show={hasSearched && !loading && !error} />
             )}
