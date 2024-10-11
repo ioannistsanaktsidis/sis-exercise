@@ -26,6 +26,7 @@ function App() {
   const [results, setResults] = useState<SearchResult[]>([]);
   const [summary, setSummary] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [loadMoreLoading, setLoadMoreLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [offset, setOffset] = useState<number>(0);
   const [total, setTotal] = useState<number>(0);
@@ -76,8 +77,10 @@ function App() {
     fetchResults(value, 0);
   };
 
-  const loadMore = () => {
-    fetchResults(searchTerm, offset + LIMIT);
+  const loadMore = async () => {
+    setLoadMoreLoading(true);
+    await fetchResults(searchTerm, offset + LIMIT);
+    setLoadMoreLoading(false);
   };
 
   return (
@@ -96,7 +99,7 @@ function App() {
               onChange={(e) => setSearchTerm(e.target.value)}
               onSearch={onSearch}
             />
-            {loading && (
+            {loading && !loadMoreLoading && (
               <Spin
                 size="large"
                 style={{ display: "block", margin: "20px auto" }}
@@ -128,7 +131,7 @@ function App() {
             )}
             {results.length < total && results.length > 0 && (
               <div style={{ textAlign: "center", marginTop: "20px" }}>
-                <Button type="primary" onClick={loadMore} loading={loading}>
+                <Button type="primary" onClick={loadMore} loading={loadMoreLoading}>
                   Load More
                 </Button>
               </div>
