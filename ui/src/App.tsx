@@ -13,7 +13,7 @@ import "./App.css";
 const { Search } = Input;
 const { Header, Content } = Layout;
 
-type SearchResult = {
+export type SearchResult = {
   title: string;
   abstract: string;
   publication_date: string;
@@ -129,7 +129,11 @@ function App() {
             )}
             {results.length < total && results.length > 0 && (
               <div style={{ textAlign: "center", marginTop: "20px" }}>
-                <Button type="primary" onClick={loadMore} loading={loadMoreLoading}>
+                <Button
+                  type="primary"
+                  onClick={loadMore}
+                  loading={loadMoreLoading}
+                >
                   Load More
                 </Button>
               </div>

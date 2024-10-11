@@ -3,7 +3,7 @@ import { Card } from "antd";
 
 type SummaryCardProps = {
   summary: string;
-}
+};
 
 export const SummaryCard: React.FC<SummaryCardProps> = ({ summary }) => {
   if (summary) {
