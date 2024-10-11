@@ -1,3 +1,5 @@
+export const LIMIT = 10;
+
 export const ERROR_MESSAGES = {
     BAD_REQUEST: "An error occurred while fetching search results. Please refine your search query.",
     NOT_FOUND: "The requested resource was not found. Please try a different query.",

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Layout, Input, Spin, Alert, Button } from "antd";
 
-import { SummaryCard } from "./SummaryCard";
-import { NoResultsMessage } from "./NoResultsMessage";
-import { ResultsList } from "./ResultsList";
-import { getErrorMessage } from "./utils";
+import { SummaryCard } from "./components/SummaryCard";
+import { NoResultsMessage } from "./components/NoResultsMessage";
+import { ResultsList } from "./components/ResultsList";
+import { getErrorMessage } from "./utils/utils";
 
-import { ERROR_MESSAGES } from "./errorMessages";
+import { ERROR_MESSAGES, LIMIT } from "./constants/constants";
 
 import "./App.css";
 
@@ -18,8 +18,6 @@ type SearchResult = {
   abstract: string;
   publication_date: string;
 };
-
-const LIMIT = 10;
 
 function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");

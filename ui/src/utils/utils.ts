@@ -1,4 +1,4 @@
-import { ERROR_MESSAGES } from "./errorMessages";
+import { ERROR_MESSAGES } from "../constants/constants";
 
 export const getErrorMessage = (status: number): string => {
     switch (status) {

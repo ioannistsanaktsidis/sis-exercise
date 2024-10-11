@@ -1,5 +1,5 @@
-import { ERROR_MESSAGES } from '../errorMessages';
-import { getErrorMessage } from '../utils';
+import { ERROR_MESSAGES } from '../constants/constants';
+import { getErrorMessage } from '../utils/utils';
 
 describe('getErrorMessage', () => {
   it('should return the correct message for status 400', () => {

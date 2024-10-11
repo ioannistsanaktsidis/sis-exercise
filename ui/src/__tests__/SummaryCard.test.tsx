@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import { SummaryCard } from '../SummaryCard';
+import { SummaryCard } from '../components/SummaryCard';
 
 describe('SummaryCard', () => {
   it('renders the summary when provided', () => {
