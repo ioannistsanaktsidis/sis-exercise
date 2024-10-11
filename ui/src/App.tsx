@@ -123,16 +123,9 @@ function App() {
               </div>
             )}
             {results.length > 0 ? (
-              <ResultsList results={results} />
+              <ResultsList results={results} total={total} loadMoreLoading={loadMoreLoading} loadMore={loadMore} />
             ) : (
               <NoResultsMessage show={hasSearched && !loading && !error} />
-            )}
-            {results.length < total && results.length > 0 && (
-              <div style={{ textAlign: "center", marginTop: "20px" }}>
-                <Button type="primary" onClick={loadMore} loading={loadMoreLoading}>
-                  Load More
-                </Button>
-              </div>
             )}
           </div>
         </div>
