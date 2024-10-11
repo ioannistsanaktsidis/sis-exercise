@@ -25,7 +25,7 @@ router = DefaultRouter()
 router.register('api/literature/search', LiteratureDocumentViewSet, basename='api-literature-search',)
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path('admin/', admin.site.urls),
     path('api/search/', SearchView.as_view(), name='search'),
     path('trigger-task/', trigger_task, name='trigger_task'),
 ] + router.urls
