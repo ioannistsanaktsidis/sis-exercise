@@ -34,3 +34,12 @@ body {
     transform: rotate(360deg);
   }
 }
+
+.ant-spin-container {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.ant-list-items {
+  background-color: #ffffff;
+}

@@ -101,7 +101,7 @@ function App() {
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <div style={{ width: "80%" }}>
+          <div style={{ width: "80%", paddingLeft: "20px", paddingRight: "20px" }}>
             <ResultsCount total={total} />
             {results.length > 0 ? (
               <ResultsList results={results} />
