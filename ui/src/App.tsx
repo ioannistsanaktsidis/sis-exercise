@@ -19,6 +19,7 @@ const { Header, Content } = Layout;
 
 function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [initialSearchTerm, setInitialSearchTerm] = useState<string>("");
   const [results, setResults] = useState<SearchResult[]>([]);
   const [summary, setSummary] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
@@ -65,6 +66,7 @@ function App() {
   };
 
   const onSearch = (value: string) => {
+    setInitialSearchTerm(value);
     setResults([]);
     setOffset(0);
     setSummary("");
@@ -75,7 +77,7 @@ function App() {
 
   const loadMore = async () => {
     setLoadMoreLoading(true);
-    await fetchResults(searchTerm, offset + LIMIT);
+    await fetchResults(initialSearchTerm, offset + LIMIT);
     setLoadMoreLoading(false);
   };
 
