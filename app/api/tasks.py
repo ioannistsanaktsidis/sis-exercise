@@ -1,48 +1,68 @@
-from celery import shared_task
 import requests
-from .models import Literature
+from celery import shared_task
 from datetime import datetime
+from .models import Literature
+
+URL = "https://inspirehep.net/api/literature"
+THRESHOLD = 40
+
+def calculate_arxiv_id(literature_data):
+    arxiv_id = ''
+    if 'arxiv_eprints' in literature_data and literature_data['arxiv_eprints']:
+        arxiv_eprint = literature_data['arxiv_eprints'][0]
+        categories = arxiv_eprint.get('categories', [])
+        value = arxiv_eprint.get('value', '')
+        if categories and value:
+            arxiv_id = f"{categories[0]}/{value}"
+    return arxiv_id
+
+def parse_publication_date(date_str):
+    try:
+        return datetime.strptime(date_str, "%Y-%m-%d").date()
+    except (ValueError, TypeError):
+        return None
 
 @shared_task
 def harvest_hep_data():
-    print("Running harvest_hep_data task")
-    url = "https://inspirehep.net/api/literature"
+    print("Starting HEP data harvesting task...")
+    literature_results = []
+    next_url = URL
     params = {
-        'size': 40,
-        'sort': 'mostrecent'
+        'sort': 'mostrecent',
+        'size': 10,
+        'fields': 'titles,abstracts,imprints,arxiv_eprints',
     }
-    response = requests.get(url, params=params, verify=False)
 
-    if response.status_code == 200:
-        literature_result = response.json().get('hits', {}).get('hits', [])
-        for literature in literature_result:
+    while next_url and len(literature_results) < THRESHOLD:
+        try:
+            response = requests.get(next_url, params=params, verify=False)
+            response.raise_for_status()
+
+            data = response.json()
+            literature_result = data.get('hits', {}).get('hits', [])
+            literature_results.extend(literature_result)
+
+            next_url = data.get('links', {}).get('next')
+            params = {}
+        except Exception as e:
+            print(f"Failed to fetch data: {e}")
+            break
+
+    for literature in literature_results:
             literature_data = literature.get('metadata', {})
-
-            title = literature_data.get('titles', [{}])[0].get('title', '')
+            control_number = literature_data.get('control_number', '')
             abstract = literature_data.get('abstracts', [{}])[0].get('value', '')
+            title = literature_data.get('titles', [{}])[0].get('title', '')
             publication_date_str = literature_data.get('imprints', [{}])[0].get('date', '')
 
-            try:
-                publication_date = datetime.strptime(publication_date_str, "%Y-%m-%d").date()
-            except (ValueError, TypeError):
-                publication_date = None  # Set to None if conversion fails
+            publication_date = parse_publication_date(publication_date_str)
+            arxiv_id = calculate_arxiv_id(literature_data)
 
-            # Get the arxiv_id if available
-            arxiv_id = ''
-            if 'arxiv_eprints' in literature_data and literature_data['arxiv_eprints']:
-                arxiv_eprint = literature_data['arxiv_eprints'][0]
-                categories = arxiv_eprint.get('categories', [])
-                value = arxiv_eprint.get('value', '')
-                if categories and value:
-                    arxiv_id = f"{categories[0]}/{value}"
-
-            # Check conditions to skip ingestion
             if len(title) > 200:
-                print(f"Skipping ingestion due to title length: '{title}' exceeds 200 characters.")
+                print(f"Skipping ingestion of {control_number} due to title length: '{title}' exceeds 200 characters.")
                 continue
 
             if len(arxiv_id) > 50:
-                print(f"Skipping ingestion of arxiv_id entry: '{arxiv_id}' is more than 50 characters.")
                 arxiv_id = ''
 
             if title and abstract and publication_date:
@@ -53,6 +73,4 @@ def harvest_hep_data():
                     arxiv_id=arxiv_id
                 )
             else:
-                print("Skipping Literature creation due to missing required fields.")
-    else:
-        print(f"Failed to fetch papers: {response.status_code}")
+                print(f"Skipping Literature creation for {control_number} due to missing required fields.")
