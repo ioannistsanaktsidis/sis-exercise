@@ -28,6 +28,7 @@ def harvest_hep_data():
     literature_results = []
     next_url = URL
     params = {
+        'sort': 'mostrecent',
         'size': 10,
         'fields': 'titles,abstracts,imprints,arxiv_eprints',
     }
