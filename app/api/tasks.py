@@ -24,7 +24,7 @@ def parse_publication_date(date_str):
 
 @shared_task
 def harvest_hep_data():
-    print("Running harvest_hep_data task")
+    # print("Running harvest_hep_data task")
     literature_results = []
     next_url = URL
     params = {
@@ -35,7 +35,6 @@ def harvest_hep_data():
 
     while next_url and len(literature_results) < THRESHOLD:
         try:
-            print(f"Fetching data from: {next_url}")
             response = requests.get(next_url, params=params, verify=False)
             response.raise_for_status()
 
@@ -48,23 +47,24 @@ def harvest_hep_data():
         except Exception as e:
             print(f"Failed to fetch data: {e}")
             break
+
     for literature in literature_results:
             literature_data = literature.get('metadata', {})
 
             title = literature_data.get('titles', [{}])[0].get('title', '')
             abstract = literature_data.get('abstracts', [{}])[0].get('value', '')
             publication_date_str = literature_data.get('imprints', [{}])[0].get('date', '')
-            print(f"Title: {title} , Date: {publication_date_str} , Abstract: {abstract.strip()[:50]}...")
+            #print(f"Title: {title} , Date: {publication_date_str} , Abstract: {abstract.strip()[:50]}...")
 
             publication_date = parse_publication_date(publication_date_str)
             arxiv_id = calculate_arxiv_id(literature_data)
 
             if len(title) > 200:
-                print(f"Skipping ingestion due to title length: '{title}' exceeds 200 characters.")
+                #print(f"Skipping ingestion due to title length: '{title}' exceeds 200 characters.")
                 continue
 
             if len(arxiv_id) > 50:
-                print(f"Skipping ingestion of arxiv_id entry: '{arxiv_id}' is more than 50 characters.")
+                #print(f"Skipping ingestion of arxiv_id entry: '{arxiv_id}' is more than 50 characters.")
                 arxiv_id = ''
 
             if title and abstract and publication_date:
@@ -75,4 +75,5 @@ def harvest_hep_data():
                     arxiv_id=arxiv_id
                 )
             else:
-                print("Skipping Literature creation due to missing required fields.")
+                pass
+                #print("Skipping Literature creation due to missing required fields.")
