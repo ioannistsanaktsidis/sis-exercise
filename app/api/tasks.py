@@ -5,10 +5,6 @@ from datetime import datetime
 
 URL = "https://inspirehep.net/api/literature"
 THRESHOLD = 40
-PARAMS = {
-    'size': 10,
-    'fields': 'titles,abstracts,imprints,arxiv_eprints',
-}
 
 def calculate_arxiv_id(literature_data):
     arxiv_id = ''
@@ -31,11 +27,15 @@ def harvest_hep_data():
     print("Running harvest_hep_data task")
     literature_results = []
     next_url = URL
+    params = {
+        'size': 10,
+        'fields': 'titles,abstracts,imprints,arxiv_eprints',
+    }
 
     while next_url and len(literature_results) < THRESHOLD:
         try:
             print(f"Fetching data from: {next_url}")
-            response = requests.get(next_url, params=PARAMS, verify=False)
+            response = requests.get(next_url, params=params, verify=False)
             response.raise_for_status()
 
             data = response.json()
@@ -47,14 +47,13 @@ def harvest_hep_data():
         except Exception as e:
             print(f"Failed to fetch data: {e}")
             break
-
     for literature in literature_results:
             literature_data = literature.get('metadata', {})
 
             title = literature_data.get('titles', [{}])[0].get('title', '')
             abstract = literature_data.get('abstracts', [{}])[0].get('value', '')
             publication_date_str = literature_data.get('imprints', [{}])[0].get('date', '')
-            print(f"Processing paper: {title} , {publication_date_str} , {abstract.strip()[:50]}...")
+            print(f"Title: {title} , Date: {publication_date_str} , Abstract: {abstract.strip()[:50]}...")
 
             publication_date = parse_publication_date(publication_date_str)
             arxiv_id = calculate_arxiv_id(literature_data)
