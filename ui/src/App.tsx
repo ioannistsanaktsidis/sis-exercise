@@ -8,7 +8,7 @@ import { ResultsList } from "./components/ResultsList";
 import { Loading } from "./components/Loading";
 import { ErrorAlert } from "./components/ErrorAlert";
 import { ResultsCount } from "./components/ResultsCount";
-import { getErrorMessage } from "./utils/utils";
+import { getErrorMessage, mapApiResponseToSearchResult } from "./utils/utils";
 
 import { ERROR_MESSAGES, LIMIT } from "./constants/constants";
 
@@ -46,7 +46,9 @@ function App() {
       }
 
       const data = await response.json();
-      setResults((prevResults) => [...prevResults, ...data.results]);
+      const mappedResults = mapApiResponseToSearchResult(data.results);
+
+      setResults((prevResults) => [...prevResults, ...mappedResults]);
       setSummary(data.summary);
       setTotal(data.total);
       setOffset(newOffset);

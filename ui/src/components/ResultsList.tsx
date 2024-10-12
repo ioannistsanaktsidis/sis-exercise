@@ -20,7 +20,7 @@ export const ResultsList: React.FC<ResultsListProps> = ({ results }) => (
           }
         />
         <div style={{ marginTop: "10px", fontStyle: "italic" }}>
-          Published on: {new Date(item.publication_date).toLocaleDateString()}
+          Published on: {new Date(item.publicationDate).toLocaleDateString()}
         </div>
       </List.Item>
     )}
