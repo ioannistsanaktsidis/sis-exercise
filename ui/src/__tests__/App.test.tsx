@@ -66,12 +66,12 @@ describe("App", () => {
               {
                 title: "First Result",
                 abstract: "Abstract 1",
-                publication_date: "2021-01-01"
+                publicationDate: "2021-01-01"
               },
               {
                 title: "Second Result",
                 abstract: "Abstract 2",
-                publication_date: "2021-02-01"
+                publicationDate: "2021-02-01"
               }
             ],
             summary: "Summary of results",

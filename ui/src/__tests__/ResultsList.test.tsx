@@ -7,12 +7,12 @@ const mockResults = [
   {
     title: "First Result",
     abstract: "This is the abstract of the first result.",
-    publication_date: "2021-01-01"
+    publicationDate: "2021-01-01"
   },
   {
     title: "Second Result",
     abstract: "This is the abstract of the second result.",
-    publication_date: "2021-02-01"
+    publicationDate: "2021-02-01"
   }
 ];
 
@@ -49,7 +49,7 @@ describe("ResultsList", () => {
       expect(
         screen.getByText(
           `Published on: ${new Date(
-            result.publication_date
+            result.publicationDate
           ).toLocaleDateString()}`
         )
       ).toBeInTheDocument();
