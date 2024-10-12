@@ -1,38 +1,37 @@
-import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect';
-import App from '../App';
-import { ERROR_MESSAGES } from '../constants/constants';
+import React from "react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
+import App from "../App";
+import { ERROR_MESSAGES } from "../constants/constants";
 
 global.fetch = jest.fn(() =>
   Promise.resolve({
-    json: () => Promise.resolve({ results: [], summary: '', total: 0 }),
+    json: () => Promise.resolve({ results: [], summary: "", total: 0 })
   })
 ) as jest.Mock;
 
-describe('App', () => {
+describe("App", () => {
   beforeEach(() => {
     (global.fetch as jest.Mock).mockClear();
   });
 
-  it('renders the main elements of the App component', () => {
+  it("renders the main elements of the App component", () => {
     render(<App />);
 
-    expect(screen.getByText('INSPIRE HEP')).toBeInTheDocument();
-    expect(screen.getByPlaceholderText('Search...')).toBeInTheDocument();
-    expect(screen.getByText('Search')).toBeInTheDocument();
-
+    expect(screen.getByText("INSPIRE HEP")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Search...")).toBeInTheDocument();
+    expect(screen.getByText("Search")).toBeInTheDocument();
   });
 
-  it('displays the loading spinner when loading', async () => {
+  it("displays the loading spinner when loading", async () => {
     render(<App />);
 
-    const searchInput = screen.getByPlaceholderText('Search...');
-    fireEvent.change(searchInput, { target: { value: 'loading' } });
-    fireEvent.click(screen.getByText('Search'));
+    const searchInput = screen.getByPlaceholderText("Search...");
+    fireEvent.change(searchInput, { target: { value: "loading" } });
+    fireEvent.click(screen.getByText("Search"));
 
     await waitFor(() => {
-      expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
+      expect(screen.getByTestId("loading-spinner")).toBeInTheDocument();
     });
   });
 
@@ -40,18 +39,20 @@ describe('App', () => {
     (global.fetch as jest.Mock).mockImplementationOnce(() =>
       Promise.resolve({
         ok: true,
-        json: () => Promise.resolve({ results: [], summary: '', total: 0 }),
+        json: () => Promise.resolve({ results: [], summary: "", total: 0 })
       })
     );
 
     render(<App />);
 
-    const searchInput = screen.getByPlaceholderText('Search...');
-    fireEvent.change(searchInput, { target: { value: 'noresults' } });
-    fireEvent.click(screen.getByText('Search'));
+    const searchInput = screen.getByPlaceholderText("Search...");
+    fireEvent.change(searchInput, { target: { value: "noresults" } });
+    fireEvent.click(screen.getByText("Search"));
 
     await waitFor(() => {
-      expect(screen.getByText('No results found. Please refine your query!')).toBeInTheDocument();
+      expect(
+        screen.getByText("No results found. Please refine your query!")
+      ).toBeInTheDocument();
     });
   });
 
@@ -59,105 +60,118 @@ describe('App', () => {
     (global.fetch as jest.Mock).mockImplementationOnce(() =>
       Promise.resolve({
         ok: true,
-        json: () => Promise.resolve({
-          results: [
-            { title: 'First Result', abstract: 'Abstract 1', publication_date: '2021-01-01' },
-            { title: 'Second Result', abstract: 'Abstract 2', publication_date: '2021-02-01' },
-          ],
-          summary: 'Summary of results',
-          total: 20,
-        }),
+        json: () =>
+          Promise.resolve({
+            results: [
+              {
+                title: "First Result",
+                abstract: "Abstract 1",
+                publication_date: "2021-01-01"
+              },
+              {
+                title: "Second Result",
+                abstract: "Abstract 2",
+                publication_date: "2021-02-01"
+              }
+            ],
+            summary: "Summary of results",
+            total: 20
+          })
       })
     );
 
     render(<App />);
 
-    const searchInput = screen.getByPlaceholderText('Search...');
-    fireEvent.change(searchInput, { target: { value: 'more' } });
-    fireEvent.click(screen.getByText('Search'));
+    const searchInput = screen.getByPlaceholderText("Search...");
+    fireEvent.change(searchInput, { target: { value: "more" } });
+    fireEvent.click(screen.getByText("Search"));
 
     await waitFor(() => {
-      expect(screen.getByText('Load More')).toBeInTheDocument();
+      expect(screen.getByText("Load More")).toBeInTheDocument();
     });
   });
 
-  it('displays an error message when the fetch response is 400', async () => {
+  it("displays an error message when the fetch response is 400", async () => {
     (global.fetch as jest.Mock).mockImplementationOnce(() =>
       Promise.resolve({
         ok: false,
         status: 400,
-        statusText: 'Bad request',
+        statusText: "Bad request"
       })
     );
 
     render(<App />);
 
-    const searchInput = screen.getByPlaceholderText('Search...');
-    fireEvent.change(searchInput, { target: { value: 'error' } });
-    fireEvent.click(screen.getByText('Search'));
+    const searchInput = screen.getByPlaceholderText("Search...");
+    fireEvent.change(searchInput, { target: { value: "error" } });
+    fireEvent.click(screen.getByText("Search"));
 
     await waitFor(() => {
       expect(screen.getByText(ERROR_MESSAGES.BAD_REQUEST)).toBeInTheDocument();
     });
   });
 
-  it('displays an error message when the fetch response is 500', async () => {
+  it("displays an error message when the fetch response is 500", async () => {
     (global.fetch as jest.Mock).mockImplementationOnce(() =>
       Promise.resolve({
         ok: false,
         status: 500,
-        statusText: 'Internal Server Error',
+        statusText: "Internal Server Error"
       })
     );
 
     render(<App />);
 
-    const searchInput = screen.getByPlaceholderText('Search...');
-    fireEvent.change(searchInput, { target: { value: 'error' } });
-    fireEvent.click(screen.getByText('Search'));
+    const searchInput = screen.getByPlaceholderText("Search...");
+    fireEvent.change(searchInput, { target: { value: "error" } });
+    fireEvent.click(screen.getByText("Search"));
 
     await waitFor(() => {
-      expect(screen.getByText(ERROR_MESSAGES.INTERNAL_SERVER_ERROR)).toBeInTheDocument();
+      expect(
+        screen.getByText(ERROR_MESSAGES.INTERNAL_SERVER_ERROR)
+      ).toBeInTheDocument();
     });
   });
 
-  it('displays an error message when the fetch response is 404', async () => {
+  it("displays an error message when the fetch response is 404", async () => {
     (global.fetch as jest.Mock).mockImplementationOnce(() =>
       Promise.resolve({
         ok: false,
         status: 404,
-        statusText: 'Not found',
+        statusText: "Not found"
       })
     );
 
     render(<App />);
 
-    const searchInput = screen.getByPlaceholderText('Search...');
-    fireEvent.change(searchInput, { target: { value: 'error' } });
-    fireEvent.click(screen.getByText('Search'));
+    const searchInput = screen.getByPlaceholderText("Search...");
+    fireEvent.change(searchInput, { target: { value: "error" } });
+    fireEvent.click(screen.getByText("Search"));
 
     await waitFor(() => {
       expect(screen.getByText(ERROR_MESSAGES.NOT_FOUND)).toBeInTheDocument();
     });
   });
 
-  it('displays a default error message when the fetch response is 503', async () => {
+  it("displays a default error message when the fetch response is 503", async () => {
     (global.fetch as jest.Mock).mockImplementationOnce(() =>
       Promise.resolve({
         ok: false,
         status: 503,
-        statusText: 'Service unavailable',
+        statusText: "Service unavailable"
       })
     );
 
     render(<App />);
 
-    const searchInput = screen.getByPlaceholderText('Search...');
-    fireEvent.change(searchInput, { target: { value: 'error' } });
-    fireEvent.click(screen.getByText('Search'));
+    const searchInput = screen.getByPlaceholderText("Search...");
+    fireEvent.change(searchInput, { target: { value: "error" } });
+    fireEvent.click(screen.getByText("Search"));
 
     await waitFor(() => {
-      expect(screen.getByText(ERROR_MESSAGES.UNEXPECTED_ERROR)).toBeInTheDocument();
+      expect(
+        screen.getByText(ERROR_MESSAGES.UNEXPECTED_ERROR)
+      ).toBeInTheDocument();
     });
   });
 });
