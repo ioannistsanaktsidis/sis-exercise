@@ -1,9 +1,13 @@
 import React, { useState } from "react";
-import { Layout, Input, Spin, Alert, Button } from "antd";
+import { Layout, Input, Button } from "antd";
 
+import { SearchResult } from "./types";
 import { SummaryCard } from "./components/SummaryCard";
 import { NoResultsMessage } from "./components/NoResultsMessage";
 import { ResultsList } from "./components/ResultsList";
+import { Loading } from "./components/Loading";
+import { ErrorAlert } from "./components/ErrorAlert";
+import { ResultsCount } from "./components/ResultsCount";
 import { getErrorMessage } from "./utils/utils";
 
 import { ERROR_MESSAGES, LIMIT } from "./constants/constants";
@@ -12,12 +16,6 @@ import "./App.css";
 
 const { Search } = Input;
 const { Header, Content } = Layout;
-
-export type SearchResult = {
-  title: string;
-  abstract: string;
-  publication_date: string;
-};
 
 function App() {
   const [searchTerm, setSearchTerm] = useState<string>("");
@@ -97,31 +95,14 @@ function App() {
               onChange={(e) => setSearchTerm(e.target.value)}
               onSearch={onSearch}
             />
-            {loading && !loadMoreLoading && (
-              <Spin
-                size="large"
-                style={{ display: "block", margin: "20px auto" }}
-                data-testid="loading-spinner"
-              />
-            )}
-            {error && (
-              <Alert
-                message={error}
-                type="error"
-                showIcon
-                style={{ marginTop: "20px" }}
-              />
-            )}
+            <Loading loading={loading && !loadMoreLoading} />
+            <ErrorAlert error={error} />
             <SummaryCard summary={summary} />
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <div style={{ width: "80%" }}>
-            {total > 0 && (
-              <div style={{ marginBottom: "20px", marginLeft: "20px" }}>
-                <div>{total} results</div>
-              </div>
-            )}
+          <div style={{ width: "80%", paddingLeft: "20px", paddingRight: "20px" }}>
+            <ResultsCount total={total} />
             {results.length > 0 ? (
               <ResultsList results={results} />
             ) : (

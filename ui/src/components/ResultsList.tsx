@@ -1,6 +1,6 @@
 import React from "react";
 import { List } from "antd";
-import { SearchResult } from "../App";
+import { SearchResult } from "../types";
 
 type ResultsListProps = {
   results: SearchResult[];
