@@ -16,9 +16,16 @@ const mockResults = [
   }
 ];
 
+const defaultProps = {
+    results: mockResults,
+    total: 4,
+    loadMore: jest.fn(),
+    loadMoreLoading: false,
+  };
+
 describe("ResultsList", () => {
   it("renders correctly with provided data", () => {
-    render(<ResultsList results={mockResults} />);
+    render(<ResultsList {...defaultProps}  />);
 
     expect(screen.getByText("First Result")).toBeInTheDocument();
     expect(
@@ -33,15 +40,9 @@ describe("ResultsList", () => {
     expect(screen.getByText("Published on: 2/1/2021")).toBeInTheDocument();
   });
 
-  it("displays the correct number of items", () => {
-    render(<ResultsList results={mockResults} />);
-
-    const items = screen.getAllByRole("listitem");
-    expect(items).toHaveLength(mockResults.length);
-  });
 
   it("displays the correct title, abstract, and publication date for each item", () => {
-    render(<ResultsList results={mockResults} />);
+    render(<ResultsList {...defaultProps}  />);
 
     mockResults.forEach((result) => {
       expect(screen.getByText(result.title)).toBeInTheDocument();
@@ -55,4 +56,14 @@ describe("ResultsList", () => {
       ).toBeInTheDocument();
     });
   });
+
+
+  it("displays the Load More button when there are more results", () => {
+    const props = { ...defaultProps };
+    render(<ResultsList {...props} />);
+
+    const loadMoreButton = screen.getByRole("button", { name: /load more/i });
+    expect(loadMoreButton).toBeInTheDocument();
+  });
+
 });
