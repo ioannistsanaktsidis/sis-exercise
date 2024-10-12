@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { LoadMoreButton } from '../components/LoadMoreButton';
 
-describe('LoadMoreButton Component', () => {
+describe('LoadMoreButton', () => {
   const defaultProps = {
     resultsLength: 10,
     total: 20,
