@@ -1,7 +1,7 @@
-from celery import shared_task
 import requests
-from .models import Literature
+from celery import shared_task
 from datetime import datetime
+from .models import Literature
 
 URL = "https://inspirehep.net/api/literature"
 THRESHOLD = 40
@@ -24,7 +24,7 @@ def parse_publication_date(date_str):
 
 @shared_task
 def harvest_hep_data():
-    # print("Running harvest_hep_data task")
+    print("Starting HEP data harvesting task...")
     literature_results = []
     next_url = URL
     params = {
@@ -50,21 +50,19 @@ def harvest_hep_data():
 
     for literature in literature_results:
             literature_data = literature.get('metadata', {})
-
-            title = literature_data.get('titles', [{}])[0].get('title', '')
+            control_number = literature_data.get('control_number', '')
             abstract = literature_data.get('abstracts', [{}])[0].get('value', '')
+            title = literature_data.get('titles', [{}])[0].get('title', '')
             publication_date_str = literature_data.get('imprints', [{}])[0].get('date', '')
-            #print(f"Title: {title} , Date: {publication_date_str} , Abstract: {abstract.strip()[:50]}...")
 
             publication_date = parse_publication_date(publication_date_str)
             arxiv_id = calculate_arxiv_id(literature_data)
 
             if len(title) > 200:
-                #print(f"Skipping ingestion due to title length: '{title}' exceeds 200 characters.")
+                print(f"Skipping ingestion of {control_number} due to title length: '{title}' exceeds 200 characters.")
                 continue
 
             if len(arxiv_id) > 50:
-                #print(f"Skipping ingestion of arxiv_id entry: '{arxiv_id}' is more than 50 characters.")
                 arxiv_id = ''
 
             if title and abstract and publication_date:
@@ -75,5 +73,4 @@ def harvest_hep_data():
                     arxiv_id=arxiv_id
                 )
             else:
-                pass
-                #print("Skipping Literature creation due to missing required fields.")
+                print(f"Skipping Literature creation for {control_number} due to missing required fields.")

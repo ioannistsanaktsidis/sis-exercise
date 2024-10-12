@@ -76,6 +76,7 @@ class TestTasks(TestCase):
                         'metadata': {
                             'titles': [{'title': 'Test Title'}],
                             'abstracts': [{'value': 'Test Abstract'}],
+                            'control_number': '123',
                             'imprints': [{'date': '2024-10-01'}],
                             'arxiv_eprints': [{'categories': ['nucl-th'], 'value': '1234.5678'}]
                         }
@@ -107,6 +108,7 @@ class TestTasks(TestCase):
                         'metadata': {
                             'titles': [{'title': 'T' * 201}],
                             'abstracts': [{'value': 'Test Abstract'}],
+                            'control_number': '123',
                             'imprints': [{'date': '2024-10-01'}],
                             'arxiv_eprints': [{'categories': ['nucl-th'], 'value': '1234.5678'}]
                         }
@@ -133,6 +135,7 @@ class TestTasks(TestCase):
                         'metadata': {
                             'titles': [{'title': 'Test Title'}],
                             'abstracts': [{'value': 'Test Abstract'}],
+                            'control_number': '123',
                             'imprints': [{'date': '2024-10-01'}],
                             'arxiv_eprints': [{'categories': ['nucl-th'], 'value': '1' * 51}]
                         }
@@ -164,6 +167,7 @@ class TestTasks(TestCase):
                         'metadata': {
                             'titles': [{'title': 'Test Title'}],
                             'abstracts': [{'value': 'Test Abstract'}],
+                            'control_number': '123',
                             'imprints': [{'date': '2024'}],
                             'arxiv_eprints': [{'categories': ['nucl-th'], 'value': '1' * 51}]
                         }
@@ -190,6 +194,7 @@ class TestTasks(TestCase):
                         'metadata': {
                             'titles': [{'title': ''}],
                             'abstracts': [{'value': ''}],
+                            'control_number': '123',
                             'imprints': [{'date': ''}],
                             'arxiv_eprints': [{'categories': ['nucl-th'], 'value': '1234.5678'}]
                         }
@@ -216,6 +221,7 @@ class TestTasks(TestCase):
                         'metadata': {
                             'titles': [{'title': 'Test Title 1'}],
                             'abstracts': [{'value': 'Test Abstract 1'}],
+                            'control_number': '123',
                             'imprints': [{'date': '2024-10-01'}],
                             'arxiv_eprints': [{'categories': ['nucl-th'], 'value': '1234.5678'}]
                         }
@@ -234,6 +240,7 @@ class TestTasks(TestCase):
                         'metadata': {
                             'titles': [{'title': 'Test Title 2'}],
                             'abstracts': [{'value': 'Test Abstract 2'}],
+                            'control_number': '456',
                             'imprints': [{'date': '2024-10-02'}],
                             'arxiv_eprints': [{'categories': ['nucl-th'], 'value': '2345.6789'}]
                         }
