@@ -59,8 +59,7 @@ describe("ResultsList", () => {
 
 
   it("displays the Load More button when there are more results", () => {
-    const props = { ...defaultProps };
-    render(<ResultsList {...props} />);
+    render(<ResultsList {...defaultProps} />);
 
     const loadMoreButton = screen.getByRole("button", { name: /load more/i });
     expect(loadMoreButton).toBeInTheDocument();
