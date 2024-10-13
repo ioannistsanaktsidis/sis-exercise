@@ -6,18 +6,12 @@ from django.urls import reverse
 from django.views.generic import RedirectView
 from elasticsearch.exceptions import NotFoundError
 from elasticsearch_dsl import Q
-from elasticsearch_dsl.query import Bool
-from elasticsearch_dsl.response import Response
-from elasticsearch_dsl.search import Search
 from rest_framework import status
 from rest_framework.response import Response as DRFResponse
 from rest_framework.views import APIView
 
 from sis_exercise.exceptions import InvalidInputError, InternalServerError, ResourceNotFound
 from sis_exercise.serializers import SearchQuerySerializer
-from api.views import LiteratureDocument
-from api.serializers import LiteratureSerializer
-
 
 class IndexRedirectView(RedirectView):
     def get_redirect_url(self, *args, **kwargs):

@@ -14,12 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import include
 from django.urls import path
 
 from rest_framework.routers import DefaultRouter
 from api.views import LiteratureDocumentViewSet, SearchView, trigger_task
-from sis_exercise.views import IndexRedirectView
 
 router = DefaultRouter()
 router.register('api/literature/search', LiteratureDocumentViewSet, basename='api-literature-search',)
