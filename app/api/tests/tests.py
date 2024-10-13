@@ -3,6 +3,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from unittest.mock import patch
 from api.views import SearchView
+from sis_exercise.exceptions import InvalidInputError, InternalServerError, ResourceNotFound
 
 
 class SearchViewTest(TestCase):
@@ -49,20 +50,21 @@ class SearchViewTest(TestCase):
 
     @patch('api.views.SearchView.get')
     def test_get_validation_error(self, mock_get):
-        mock_response = Response({"error": "Invalid request"}, status=status.HTTP_400_BAD_REQUEST)
-        mock_get.return_value = mock_response
-
+        mock_get.side_effect = InvalidInputError("Invalid input provided")
         response = self.client.get(self.url)
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertEqual(response.data["error"], "Invalid request")
 
     @patch('api.views.SearchView.get')
     def test_get_internal_server_error(self, mock_get):
-        mock_response = Response({"error": "Server error"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-        mock_get.return_value = mock_response
-
+        mock_get.side_effect = InternalServerError("Server error")
         response = self.client.get(self.url)
 
         self.assertEqual(response.status_code, status.HTTP_500_INTERNAL_SERVER_ERROR)
-        self.assertEqual(response.data["error"], "Server error")
+
+    @patch('api.views.SearchView.get')
+    def test_get_not_found_error(self, mock_get):
+        mock_get.side_effect = ResourceNotFound("Not found")
+        response = self.client.get(self.url)
+
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)

@@ -15,7 +15,7 @@ from api.serializers import LiteratureSerializer
 from api.documents import LiteratureDocument
 from api.models import Literature
 from api.tasks import harvest_hep_data
-from sis_exercise.exceptions import InvalidInputError, InternalServerError
+from sis_exercise.exceptions import InvalidInputError, InternalServerError, ResourceNotFound
 from sis_exercise.views import ElasticSearchAPIView
 
 
@@ -72,10 +72,8 @@ class SearchView(ElasticSearchAPIView):
                     "results": data["results"],
                     "summary": summary,
                 }, status=status.HTTP_200_OK)
-            elif response.status_code == status.HTTP_400_BAD_REQUEST:
-                raise InvalidInputError(f"Error during fetching data: {response.data}")
             else:
-                raise InternalServerError(f"Error during fetching data: {response.data}")
+                raise InternalServerError("Error during fetching data")
         except InvalidInputError as e:
             return Response(
                 {"error": str(e)},
@@ -85,6 +83,11 @@ class SearchView(ElasticSearchAPIView):
             return Response(
                 {"error": str(e)},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+        except ResourceNotFound as e:
+            return Response(
+                {"error": str(e)},
+                status=status.HTTP_404_NOT_FOUND
             )
         except Exception as e:
             return Response(
