@@ -47,3 +47,8 @@ Due to the lack of credentials and quota, the OpenAI summarization was mocked as
 ## Videos
 ### Celery task manual trigger 
 ![trigger-task](https://github.com/user-attachments/assets/4e1ca315-4b78-4036-8cd7-6736184d5dd2)
+
+
+### Search 
+![search](https://github.com/user-attachments/assets/4d4bb2c9-b4d3-4f3a-be8c-2704c3c8012d)
+
