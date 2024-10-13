@@ -45,6 +45,11 @@ To run the UI tests, you can execute:
     npm run test
 ```
 
+### Task description
+For the purpose of the exercise, the created task assumes that the project is using Datadog for monitoring.
+
+You can check the created issue here: https://github.com/ioannistsanaktsidis/sis-exercise/issues/7
+
 ## Notes
 
 Due to the lack of credentials and quota, the OpenAI summarization was mocked as per the instructions.
