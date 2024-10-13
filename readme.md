@@ -11,7 +11,7 @@ To run the backend, you can execute:
 ```
 This will start the Django app and use the default literature fixtures.
 
-You can also run:
+Alternatively, you can also run:
 ```bash
     make up
     make bootstrap-full
