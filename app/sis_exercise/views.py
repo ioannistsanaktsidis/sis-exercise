@@ -4,7 +4,7 @@ from typing import Dict
 
 from django.urls import reverse
 from django.views.generic import RedirectView
-from elasticsearch import NotFoundError
+from elasticsearch.exceptions import NotFoundError
 from elasticsearch_dsl import Q
 from elasticsearch_dsl.query import Bool
 from elasticsearch_dsl.response import Response
