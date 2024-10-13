@@ -11,7 +11,7 @@ To run the backend, you can execute:
 ```
 This will start the Django app and use the default literature fixtures.
 
-You can also run
+You can also run:
 ```bash
     make up
     make bootstrap-full
@@ -22,10 +22,16 @@ This will generate a larger list of literature fixtures to test the UI more easi
 Alternatively, you can run the Celery task manually, which will harvest the INSPIREHEP REST API and ingest the required data.
 To run the Celery task manually please visit this url http://localhost:8000/trigger-task/
 
-The Celery task responsible for harvesting INSPIREHEP REST API is running everyday at midnight.
+The Celery task responsible for harvesting INSPIREHEP REST API is running every day at midnight.
+
+To run the tests, you can execute:
+```bash
+    make test
+```
+For simplicity, this requires the Django app to be running.
 
 ### Frontend (React)
-In order to run the frontend
+To run the frontend:
 ```bash
     cd ui/
     npm i
@@ -33,6 +39,11 @@ In order to run the frontend
     # visit localhost:3000
 ```
 
+To run the UI tests, you can execute:
+```bash
+    cd ui/
+    npm run test
+```
 
 ## Notes
 
@@ -44,11 +55,13 @@ Due to the lack of credentials and quota, the OpenAI summarization was mocked as
 - Docker
 - Docker-compose
 
-## Videos
-### Celery task manual trigger 
+## Videos & Screenshots
+### Celery task manual trigger
 ![trigger-task](https://github.com/user-attachments/assets/4e1ca315-4b78-4036-8cd7-6736184d5dd2)
 
 
-### Search 
+### Search
 ![search](https://github.com/user-attachments/assets/4d4bb2c9-b4d3-4f3a-be8c-2704c3c8012d)
 
+
+### API Endpoint
