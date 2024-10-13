@@ -38,11 +38,15 @@ services:
       - db
 
   redis:
-    container_name: redis
     image: "redis:alpine"
+    container_name: redis
+    restart: always
+    ports:
+      - "6379:6379"
 
   celery:
     container_name: celery
+    restart: always
     build:
       context: .
       dockerfile: docker/Dockerfile
@@ -54,6 +58,8 @@ services:
       - db
 
   celery-beat:
+    container_name: celery-beat
+    restart: always
     build:
       context: .
       dockerfile: docker/Dockerfile
