@@ -45,3 +45,5 @@ Due to the lack of credentials and quota, the OpenAI summarization was mocked as
 - Docker-compose
 
 ## Videos
+### Celery task manual trigger 
+![trigger-task](https://github.com/user-attachments/assets/4e1ca315-4b78-4036-8cd7-6736184d5dd2)
