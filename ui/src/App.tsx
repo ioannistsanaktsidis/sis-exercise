@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Layout, Input, Button } from "antd";
+import { Layout, Input } from "antd";
 
 import { SearchResult } from "./types";
 import { SummaryCard } from "./components/SummaryCard";
@@ -105,23 +105,19 @@ function App() {
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <div style={{ width: "80%", paddingLeft: "20px", paddingRight: "20px" }}>
+          <div
+            style={{ width: "80%", paddingLeft: "20px", paddingRight: "20px" }}
+          >
             <ResultsCount total={total} />
             {results.length > 0 ? (
-              <ResultsList results={results} />
+              <ResultsList
+                results={results}
+                total={total}
+                loadMore={loadMore}
+                loadMoreLoading={loadMoreLoading}
+              />
             ) : (
               <NoResultsMessage show={hasSearched && !loading && !error} />
-            )}
-            {results.length < total && results.length > 0 && (
-              <div style={{ textAlign: "center", marginTop: "20px" }}>
-                <Button
-                  type="primary"
-                  onClick={loadMore}
-                  loading={loadMoreLoading}
-                >
-                  Load More
-                </Button>
-              </div>
             )}
           </div>
         </div>
