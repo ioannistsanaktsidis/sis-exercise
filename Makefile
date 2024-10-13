@@ -1,4 +1,4 @@
-.PHONY: build up down down-remove attach bootstrap bash shell migrate migrations test
+.PHONY: build up down down-remove attach bootstrap bootstrap-full bash shell migrate migrations test
 build:
 	docker compose build
 
@@ -18,6 +18,12 @@ attach:
 bootstrap:
 	docker exec -it django_app python manage.py migrate
 	docker exec -it django_app python manage.py loaddata sis_exercise/fixtures/literature.json
+	docker exec -it django_app python manage.py loaddata sis_exercise/fixtures/users.json
+	docker exec -it django_app python manage.py search_index --rebuild -f
+
+bootstrap-full:
+	docker exec -it django_app python manage.py migrate
+	docker exec -it django_app python manage.py loaddata sis_exercise/fixtures/literature-full.json
 	docker exec -it django_app python manage.py loaddata sis_exercise/fixtures/users.json
 	docker exec -it django_app python manage.py search_index --rebuild -f
 

@@ -1,0 +1,147 @@
+[
+  {
+    "model": "api.literature",
+    "pk": 1,
+    "fields": {
+      "title": "The Large N limit of superconformal field theories and supergravity",
+      "abstract": "We show that the large \r\nN\r\nN limit of certain conformal field theories in various dimensions include in their Hilbert space a sector describing supergravity on the product of Anti-deSitter spacetimes, spheres and other compact manifolds. This is shown by taking some branes in the full M/string theory and then taking a low energy limit where the field theory on the brane decouples from the bulk. We observe that, in this limit, we can still trust the near horizon geometry for large \r\nN\r\nN. The enhanced supersymmetries of the near horizon geometry correspond to the extra supersymmetry generators present in the superconformal group (as opposed to just the super-Poincare group). The 't Hooft limit of 4-d \r\nN\r\n=\r\n4\r\nN=4 super-Yang-Mills at the conformal point is shown to contain strings: they are IIB strings. We conjecture that compactifications of M/string theory on various Anti-deSitter spacetimes are dual to various conformal field theories. This leads to a new proposal for a definition of M-theory which could be extended to include five non-compact dimensions.",
+      "arxiv_id": "hep-th/9711200",
+      "publication_date": "1997-11-01"
+    }
+  },
+  {
+    "model": "api.literature",
+    "pk": 2,
+    "fields": {
+      "title": "The Beauty of Flavour Physics: B Meson Decays: Do They Reveal New Physics?",
+      "abstract": "This thesis discusses benchmark decays of $B$ mesons, which are excellent tools for testing the theory of the Standard Model of particle physics and exploring New Physics effects. A central part of our analysis is the exploration of the violation of the CP symmetry, where C stands for charge conjugation and P for parity (i.e., space inversion). Since CP violation has different manifestations, we explore the topic by categorizing the decays according to their dynamics and study each category separately. The first category refers to decays dominated by tree topologies, although penguin (loop) topologies also play a role. Key examples include the $B^0_d \\to J/\\psi K^0_S$ and $B^0_s \\to J/\\psi \\phi$ modes. These decays are central for exploring parameters associated with the phenomenon of $B^0_q$-$\\bar{B}^0_q$ mixing. We have suggested methods for properly including the penguin contributions in the analysis of these mixing parameters. There are also decays which are pure tree transitions, such as the $B_s \\to D_s^{\\pm} K^{\\mp}$ system and the related modes. These decays allow theoretically clean determinations of the angle $\\gamma$ of the Unitarity Triangle. Utilising experimental data, we have revealed puzzling patterns in these decays which could be footprints of New Physics. We have presented a model-independent analysis to account for such New Physics effects. Another category includes decays dominated by penguins, such as the $B \\to \\pi K$ channels. We have addressed the long-standing puzzling patterns in the data within this system, discussing correlations between key observables. We have proposed strategies for further exploring these intriguing cases and optimally determining the parameters describing the puzzling effects. These strategies can be applied in the future high-precision experiments in $B$ physics. Last but not least, there are decays arising from electroweak penguins and box topologies, such as the leptonic $B^{0}_{(s)} \\to \\mu^{+} \\mu^{-}$ modes, which also have a rich phenomenology related to CP violation. These are very rare processes in the Standard Model. In our analysis, we have utilised these interesting modes as a probe for New Physics. Throughout this thesis, we have discussed exciting new perspectives to further explore CP violation. Comparing our theoretical predictions with experimental measurements allows us to test the Standard Model quark sector and search for physics beyond the Standard Model, highlighting the importance of synergies between theorists and experimentalists. Thrilling times lie ahead of us as we move into the era of the highest precision in $B$ physics. Utilising our theoretical analyses and methods we may eventually identify New Physics and reveal new sources of CP violation, opening up new horizons in the field of particle physics.",
+      "publication_date": "2024-11-06"
+    }
+  },
+  {
+    "model": "api.literature",
+    "pk": 3,
+    "fields": {
+      "title": "Quantum Service-oriented Computing: A Proposal for Quantum Software as a Service",
+      "abstract": "This book is an analysis of quantum computing, covering everything from its foundational principles to practical applications in the development of quantum services. It offers a technical and complex overview to provide the necessary knowledge to any researcher, scientist or developer who wants to get into service-oriented quantum computing.The field of quantum computing has evolved rapidly in recent years, with the potential to revolutionize the way we approach complex problems in various fields. This comprehensive guide covers the fundamental principles of quantum computing and its practical applications in the development of quantum services.Beyond theoretical knowledge, the book goes on to explore some of the challenges that quantum software developers face in today’s landscape. It addresses issues related to low-level abstractions and the absence of integration, deployment and quality assurance mechanisms in quantum software engineering. Also, it explores the principles of service-oriented computing applied to quantum computing, revealing architectural patterns adapted to quantum computing and discussing standardization and accessibility in this field. It also provides insight into streamlining the deployment process through a DevOps approach for continuous deployment of quantum services.This book will serve as a guide for all researchers, scientists and developers by providing them with an understanding of the current limitations and problems in quantum computing-oriented software development, and how to address them with software engineering techniques and tools applied to quantum computing.",
+      "publication_date": "2024-10-14"
+    }
+  },
+  {
+    "model": "api.literature",
+    "pk": 4,
+    "fields": {
+      "title": "The focusing complex mKdV equation with nonzero background: Large N-order asymptotics of multi-rational solitons and related Painlevé-III hierarchy",
+      "abstract": "In this paper, we investigate the large-order asymptotics of multi-rational solitons of the focusing complex modified Korteweg-de Vries (c-mKdV) equation with nonzero background via the Riemann-Hilbert problems. First, based on the Lax pair, inverse scattering transform, and a series of deformations, we construct a multi-rational soliton of the c-mKdV equation via a solvable Riemann-Hilbert problem (RHP). Then, through a scale transformation, we construct a RHP corresponding to the limit function which is a new solution of the c-mKdV equation in the rescaled variables <math altimg=\"si1.svg\"><mi>X</mi><mo>,</mo><mspace width=\"0.2em\"/><mi>T</mi></math>, and prove the existence and uniqueness of the RHP's solution. Moreover, we also find that the limit function satisfies the ordinary differential equations (ODEs) with respect to space X and time T, respectively. The ODEs with respect to space X are identified with certain members of the Painlevé-III hierarchy. We study the large X and transitional asymptotic behaviors of near-field limit solutions, and we provide some part results for the case of large T. These results will be useful to understand and apply the large-order rational solitons in the nonlinear wave equations.",
+      "publication_date": "2025-01-15"
+    }
+  },
+  {
+    "model": "api.literature",
+    "pk": 5,
+    "fields": {
+      "title": "Fragment-based initialization for quantum subspace methods",
+      "abstract": "We present a quantum-classical algorithm called LAS-QKSD for multireference systems, by combining a classical localized active space (LAS) fragment-based multireference algorithm with the quantum Krylov subspace diagonalization (QKSD) method for quantum computers. The algorithm uses wave-function information from a LAS self-consistent field (LASSCF) calculation to prepare an initial state with better overlap with the target ground state than the Hartree-Fock state. This is coupled with the use of QKSD to ultimately converge to the exact energy, providing faster convergence than starting from the Hartree-Fock state. Fragmentation has the twofold benefit of fewer configurations on the classical side of the algorithm as well as fewer state preparation gates on the quantum side. First, we compare the LAS-QKSD method to the classical LASSCF method and to QKSD with a Hartree-Fock initial state. We then examine ways to load the LASSCF wave function using direct initialization and a QKSD-motivated spectral filtering approach. Finally, using a bimetallic complex, we show that the LAS-QKSD method is an efficient alternative to highly expensive complete active space self-consistent field calculations on strongly correlated systems.",
+      "publication_date": "2024-10-11"
+    }
+  },
+  {
+    "model": "api.literature",
+    "pk": 6,
+    "fields": {
+      "title": "Efficient Computation of Overlap Reduction Functions for Pulsar Timing Arrays",
+      "abstract": "Pulsar timing arrays seek and study gravitational waves (GWs) through the angular two-point correlation function of timing residuals they induce in pulsars. The two-point correlation function induced by the standard transverse-traceless GWs is the famous Hellings-Downs curve, a function only of the angle between the two pulsars. Additional polarization modes (vector or scalar) that may arise in alternative-gravity theories have different angular correlation functions. Furthermore, anisotropy, linear, or circular polarization in the stochastic GW background gives rise to additional structure in the two-point correlation function that cannot be written simply in terms of the angular separation of the two pulsars. In this Letter, we provide a simple formula for the most general two-point correlation function—or overlap reduction function (ORF)—for a gravitational-wave background with an arbitrary polarization state, possibly containing anisotropies in its intensity and polarization (linear and/or circular). We provide specific expressions for the ORFs sourced by the general-relativistic transverse-traceless GW modes as well as vector (or spin-1) modes that may arise in alternative-gravity theories.",
+      "publication_date": "2024-10-11"
+    }
+  },
+  {
+    "model": "api.literature",
+    "pk": 7,
+    "fields": {
+      "title": "Role of quadrupole deformation in the Borromean nucleus <math><mmultiscripts><mi mathvariant=\"normal\">B</mi><mprescripts/><none/><mn>19</mn></mmultiscripts></math>",
+      "abstract": "I study the spatial structure of the Borromean nucleus <math><mmultiscripts><mi mathvariant=\"normal\">B</mi><mprescripts/><none/><mn>19</mn></mmultiscripts></math> based on a deformed-core plus multineutron model within the Hartree-Fock-Bogoliubov method. To consistently understand the experimental data of the matter radius and the core-dineutron distance, I suggest the deformed-core (<math><mrow><mi>β</mi><mo>≥</mo><mn>0.6</mn></mrow></math>) plus six-neutron (<math><mrow><mn>6</mn><mi>n</mi></mrow></math>) structure. The fractions of the <math><mi>s</mi></math>- and <math><mi>p</mi></math>-wave components in the dineutron are both predicted to be about 20% at <math><mrow><mi>β</mi><mo>=</mo><mn>0.6</mn></mrow></math>. At larger deformation, the <math><mi>s</mi></math>-wave component remains at about 20%, while the <math><mi>p</mi></math>-wave component increases significantly, in contrast to the spherical-core plus <math><mrow><mn>2</mn><mi>n</mi></mrow></math> model calculations, where the <math><mi>s</mi></math> and <math><mi>d</mi></math> waves are most of the components.",
+      "publication_date": "2024-10-11"
+    }
+  },
+  {
+    "model": "api.literature",
+    "pk": 8,
+    "fields": {
+      "title": "Post-Neutron Mass Yield Distribution in the Epi-Cadmium Neutron-Induced Fission of $^{239}$Pu",
+      "abstract": "In the epi-cadmium neutron-induced fission of 239Pu, cumulative and independent yields of various fission products within the mass ranges of 83 to 117 and 123 to 156 have been measured by using an off-line gamma-ray spectrometric technique. The spectrum average neutron energy is 1.9 MeV. Charge distribution correction on the cumulative yields was applied to obtain their post-neutron mass yields. Mass yield distribution parameters such as the peak-to-valley (P/V) ratio, the full-width at tenth-maximum of light and heavy mass wings, the average light mass <AL> and heavy mass <AH>, and the average neutron number <ν> were obtained. The mass yields in the epi-cadmium and thermal neutron–induced fission of 239Pu were compared to examine the role of excitation energy on the P/V ratio and the nuclear structure effect.",
+      "publication_date": "2024-11-01"
+    }
+  },
+  {
+    "model": "api.literature",
+    "pk": 9,
+    "fields": {
+      "title": "Casimir-Lifshitz formula for rectangular dielectric waveguide",
+      "abstract": "We analyze the Casimir-Lifshitz effect associated with the electromagnetic field in the presence of a rectangular waveguide consisting of two distinct dielectric materials in <math><mrow><mo>(</mo><mn>3</mn><mo>+</mo><mn>1</mn><mo>)</mo></mrow></math>-dimensional space-time. We employ the surface-mode technique to derive a generalized Lifshitz formula for this specific geometry. Our formulation accounts for the unique dielectric properties of the materials composing the waveguide, leading to a precise calculation of the Casimir-Lifshitz energy. In the asymptotic limit, our results recover the classical expressions for perfectly reflecting boundaries. This work extends the applicability of the Lifshitz formula to more complex systems and provides valuable insights into the influence of dielectric materials on the electromagnetic Casimir effect.",
+      "publication_date": "2024-10-11"
+    }
+  },
+  {
+    "model": "api.literature",
+    "pk": 10,
+    "fields": {
+      "title": "Solitary waves for Landau-Lifshitz system augmented with the Chern-Simons gauge",
+      "abstract": "In this paper, we propose the Landau-Lifshitz system augmented with Chern-Simons gauge, which can be considered as the Schrödinger analog of the Chern-Simons O(3) sigma model. We derive its self-dual equations and provide its N-equivariant static solutions. We also prove the existence of N-equivariant solitary waves for non-self-dual case and study their qualitative properties.",
+      "publication_date": "2024-12-05"
+    }
+  },
+  {
+    "model": "api.literature",
+    "pk": 11,
+    "fields": {
+      "title": "Relativistic Quantum Mechanics",
+      "abstract": "Written by two of the most prominent leaders in particle physics, Relativistic Quantum Mechanics: An Introduction to Relativistic Quantum Fields provides a classroom-tested introduction to the formal and conceptual foundations of quantum field theory. Designed for advanced undergraduate- and graduate-level physics students, the text only requires previous courses in classical mechanics, relativity, and quantum mechanics.The introductory chapters of the book summarise the theory of special relativity and its application to the classical description of the motion of a free particle and a field. The authors then explain the quantum formulation of field theory through the simple example of a scalar field described by the Klein–Gordon equation as well as its extension to the case of spin ½ particles described by the Dirac equation. They also present the elements necessary for constructing the foundational theories of the standard model of electroweak interactions, namely quantum electrodynamics and the Fermi theory of neutron beta decay. Many applications to quantum electrodynamics and weak interaction processes are thoroughly analysed. The book also explores the timely topic of neutrino oscillations.Logically progressing from the fundamentals to recent discoveries, this textbook provides students with the essential foundation to study more advanced theoretical physics and elementary particle physics. It will help them understand the theory of electroweak interactions and gauge theories.View the second and third books in this collection: Electroweak Interactions and An Introduction to Gauge Theories.Key Features of the new edition:Besides a general revision of text and formulae, three new chapters have been added.·         Chapter 17 introduces and discusses double beta decay processes with and without neutrino emission, the latter being the only process able to determine the Dirac or Majorana nature of the neutrino (discussed in Chapter 13). A discussion of the limits to the Majorana neutrino mass obtained recently in several underground laboratories is included.·         Chapter 18 illustrates the calculation of the mass spectrum of “quarkonia” (mesons composed by a pair of heavy, charm or beauty quarks), in analogy with the positronium spectrum discussed in Chapter 12. This calculation has put into evidence the existence of “unexpected” states and has led to the new field of “exotic hadrons”, presently under active theoretical and experimental scrutiny.·         Chapter 19 illustrates the Born-Oppenheimer approximation, extensively used in the computation of simple molecules, and its application to the physics of exotic hadrons containing a pair of heavy quarks, with application to the recently observed doubly charmed baryons.This eBook was published Open Access with funding support from the Sponsoring Consortium for Open Access Publishing in Particle Physics (SCOAP3).A PDF version of this book is available for free in Open Access at www.taylorfrancis.com. It has been made available under a Creative Commons Attribution-Non Commercial-No Derivatives 4.0 license.",
+      "publication_date": "2024-10-16"
+    }
+  },
+  {
+    "model": "api.literature",
+    "pk": 12,
+    "fields": {
+      "title": "Highly Nonlinear Light-Nucleus Interaction",
+      "abstract": "The interaction between light and atomic nuclei is typically weak and confined within the linear and perturbative regime, which limits the achievable nuclear excitation probability and impedes potential applications such as nuclear optical clocks, nuclear lasers, and nuclear energy storage. In this Letter we show that the interaction between hydrogenlike thorium-229 ions (<math display=\"inline\"><mrow><msup><mrow><mmultiscripts><mrow><mi>Th</mi></mrow><mprescripts/><none/><mrow><mn>229</mn></mrow></mmultiscripts></mrow><mrow><mn>89</mn><mo>+</mo></mrow></msup></mrow></math>) and contemporary intense lasers propels light-nucleus interaction into a highly nonlinear and nonperturbative regime. This interaction unlocks remarkably efficient nuclear excitation: over 10% of the <math display=\"inline\"><mrow><mmultiscripts><mrow><mi>Th</mi></mrow><mprescripts/><none/><mrow><mn>229</mn></mrow></mmultiscripts></mrow></math> nuclei can be excited to the isomeric state by a single femtosecond laser pulse. Moreover, the laser-driven <math display=\"inline\"><mrow><msup><mrow><mmultiscripts><mrow><mi>Th</mi></mrow><mprescripts/><none/><mrow><mn>229</mn></mrow></mmultiscripts></mrow><mrow><mn>89</mn><mo>+</mo></mrow></msup></mrow></math> ions radiate multiple wavelengths of light that are high-order harmonics of the laser frequency, akin to the high harmonic generation process from laser-driven atoms but with distinct characteristics. These results pioneer a new frontier for exploring light-matter interaction, furnish a powerful method for efficient control over atomic nuclei, and pave a new way of nuclear coherent light emission.",
+      "publication_date": "2024-10-11"
+    }
+  },
+  {
+    "model": "api.literature",
+    "pk": 13,
+    "fields": {
+      "title": "Light-modulated Andreev effects in graphene-based superconducting junctions",
+      "abstract": "We investigate the transport properties, including Andreev reflection, <math><mn>0</mn><mtext>-</mtext><mi>π</mi></math> transition, and crossed Andreev reflection, of graphene-based superconducting junctions modulated by an off-resonant circularly polarized light and a staggered sublattice potential. Using the Dirac-Bogoliubov–de Gennes equation and the Blonder-Tinkham-Klapwijk formula associated with numerical calculations, we can make the following findings. In a graphene-based normal conductor/superconductor (NS) junction, the differential conductance from Andreev reflection can be used to distinguish band structures. However, in a graphene-based superconductor/normal conductor/superconductor (SNS) junction, the valley polarization is induced and brings in a <math><mn>0</mn><mtext>-</mtext><mi>π</mi></math> transition. Moreover, in a graphene-based normal conductor/superconductor/normal conductor (NSN) junction, the opposite valley polarization in two normal regions can lead to the pure and even perfect crossed Andreev reflections. The appreciable differential conductance of the pure crossed Andreev reflection is found for the 20–50 nm junction length, far less than the previous result in the graphene-based NSN junction, and it is helpful for the integration of superconducting quantum circuits. Our findings provide experimental possibilities to characterize the band structures, to realize the valley polarization-induced <math><mn>0</mn><mtext>-</mtext><mi>π</mi></math> transition, and to design the valley-based highly efficient Cooper pair splitter in the light-modulated graphene-based superconducting junctions.",
+      "publication_date": "2024-10-10"
+    }
+  },
+  {
+    "model": "api.literature",
+    "pk": 14,
+    "fields": {
+      "title": "Measuring self-gravity of spacecraft for space gravitational wave detection",
+      "abstract": "In space-based gravitational wave detection, the gravitational force generated by the spacecraft itself at the location of the test masses, known as self-gravity, can disrupt the free-fall state of the test masses. The self-gravity effect is one of the main noise sources in gravitational wave detection. Currently, the only established method to estimate this effect before launch is the finite element calculation based on the precise spacecraft computer aided design model. In this paper, we propose a torsion pendulum experiment to measure the dominant gravitational multipole components of spacecraft to assess the self-gravity. This provides an important ground-validation approach for finite element calculations. The results of a proof-of-principle experiment show that the measurement resolution can reach <math display=\"inline\"><mrow><mn>3.4</mn><mo>×</mo><msup><mrow><mn>10</mn></mrow><mrow><mo>-</mo><mn>11</mn></mrow></msup><mrow><mtext> </mtext><mtext> </mtext><mi mathvariant=\"normal\">m</mi><mtext> </mtext><msup><mrow><mi mathvariant=\"normal\">s</mi></mrow><mrow><mo>-</mo><mn>2</mn></mrow></msup></mrow></mrow></math> for differential linear acceleration, <math display=\"inline\"><mn>1.6</mn><mo>×</mo><msup><mn>10</mn><mrow><mo>-</mo><mn>10</mn></mrow></msup><mtext> </mtext><mtext> </mtext><mrow><mi>rad</mi><mtext> </mtext><msup><mi mathvariant=\"normal\">s</mi><mrow><mo>-</mo><mn>2</mn></mrow></msup></mrow></math> for angular acceleration, and <math display=\"inline\"><mrow><mn>4.7</mn><mo>×</mo><msup><mrow><mn>10</mn></mrow><mrow><mo>-</mo><mn>9</mn></mrow></msup><mtext> </mtext><mtext> </mtext><msup><mrow><mi mathvariant=\"normal\">s</mi></mrow><mrow><mo>-</mo><mn>2</mn></mrow></msup></mrow></math> for linear gradients. These measurement resolutions are sufficient for estimating the self-gravity of Laser Interferometer Space Antenna or TianQin.",
+      "publication_date": "2024-10-10"
+    }
+  },
+  {
+    "model": "api.literature",
+    "pk": 15,
+    "fields": {
+      "title": "Blackbody-radiation Zeeman shifts in optical clocks: The role of fine-structure intramanifold resonances",
+      "abstract": "The role of the fine-structure intramanifold resonances to the Zeeman shifts caused by the blackbody radiation (BBRz shifts) in optical clock transitions is analyzed. The clock frequency measurement in the <math><mrow><mmultiscripts><mi>S</mi><mn>0</mn><none/><mprescripts/><none/><mn>1</mn></mmultiscripts><mo>−</mo><mmultiscripts><mi>P</mi><mn>0</mn><none/><mprescripts/><none/><mn>3</mn></mmultiscripts></mrow></math> clock transition of the singly charged aluminium ion (<math><msup><mrow><mi>Al</mi></mrow><mo>+</mo></msup></math>) has already reached the <math><msup><mn>10</mn><mrow><mo>−</mo><mn>19</mn></mrow></msup></math> level at which the BBRz effect was considered significant in determining the uncertainty. In view of this, we probe first the BBRz shift in this transition rigorously and demonstrate the importance of the contributions from the intramanifold resonances explicitly. To carry out the analysis, we determine the dynamic magnetic dipole (<math><mrow><mi>M</mi><mn>1</mn></mrow></math>) polarizabilities of the clock states over a wide range of angular frequencies by employing two variants of relativistic many-body methods. It is found that the BBR spectrum at 300 K exhibits a blue detuning with respect to the <math><mrow><mmultiscripts><mi>P</mi><mn>0</mn><none/><mprescripts/><none/><mn>3</mn></mmultiscripts><mo>−</mo><mmultiscripts><mi>P</mi><mn>1</mn><none/><mprescripts/><none/><mn>3</mn></mmultiscripts></mrow></math> fine-structure intramanifold resonance in <math><msup><mrow><mi>Al</mi></mrow><mo>+</mo></msup></math>. This produces a large deviation from the static <math><mrow><mi>M</mi><mn>1</mn></mrow></math> polarizability limit, which cannot be used to estimate the BBRz shift since the temperature exceeds the fine-structure splitting (<math><mrow><msub><mi>k</mi><mi>B</mi></msub><mi>T</mi><mo>&gt;</mo><mi mathvariant=\"normal\">Δ</mi><mi>E</mi></mrow></math>). The resonance also leads to a reversal behavior of the temperature dependence and a cancellation in the shift. Extending our analyses to other optical clocks, we show that these shifts are typically on the order of microhertz leading to fractional shifts in the clock transitions at the <math><msup><mn>10</mn><mrow><mo>−</mo><mn>20</mn></mrow></msup></math> level or below.",
+      "publication_date": "2024-10-10"
+    }
+  },
+  {
+    "model": "api.literature",
+    "pk": 1,
+    "fields": {
+      "title": "Subpicotesla Optomechanical Magnetometry",
+      "abstract": "High-sensitivity magnetometry has found important applications in fields ranging from basic science studies such as searching for dark matter and exotic particles to more practical tasks in geology, archaeology, navigation, and biomedicine. Currently, the performance of typical high-sensitivity magnetometers is limited by the required stringent operation environment, such as cryogenic conditions for superconducting quantum interference device magnetometers and near-zero-field environments for spin-exchange-relaxation-free atomic magnetometers. This Letter reports a high-sensitivity solid-state magnetometer based on a magnetostrictive gap-swing Fabry-Pérot cavity optomechanical system that is capable of benchmark performance at ambient environment conditions. Thanks to the strong resonance enhancement of the gap-swing mechanical mode, it achieves a sensitivity of <math display=\"inline\"><mrow><mn>620</mn><mtext> </mtext><mtext> </mtext><mi>fT</mi><mtext> </mtext><msup><mrow><mi>Hz</mi></mrow><mrow><mo>-</mo><mn>1</mn><mo>/</mo><mn>2</mn></mrow></msup></mrow></math> at room temperature and under the Earth’s magnetic field, and is expected to approach the thermal-noise-limited sensitivity of <math display=\"inline\"><mrow><mn>5.9</mn><mtext> </mtext><mtext> </mtext><mi>fT</mi><mtext> </mtext><msup><mrow><mi>Hz</mi></mrow><mrow><mo>-</mo><mn>1</mn><mo>/</mo><mn>2</mn></mrow></msup></mrow></math> by controlling the optomechanical coupling. Our Letter opens the avenue toward the application of portable and low-maintenance high-sensitivity magnetometry in broad fields.",
+      "publication_date": "2024-10-10"
+    }
+  }
+]
