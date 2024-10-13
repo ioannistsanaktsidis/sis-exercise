@@ -19,7 +19,7 @@ You can also run:
 ```
 This will generate a larger list of literature fixtures to test the UI more easily.
 
-Alternatively, you can run the Celery task manually, which will harvest the INSPIREHEP REST API and ingest the required data.
+If you want to add fixtures using the Celery task, you can run it manually. This will harvest the INSPIREHEP REST API and ingest the required data.
 To run the Celery task manually please visit this url http://localhost:8000/trigger-task/
 
 The Celery task responsible for harvesting INSPIREHEP REST API is running every day at midnight.
