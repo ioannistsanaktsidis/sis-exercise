@@ -1,7 +1,6 @@
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.decorators import action, api_view
-from django.http import HttpResponse
+from rest_framework.decorators import api_view
 
 from django_elasticsearch_dsl_drf.viewsets import DocumentViewSet
 from django_elasticsearch_dsl_drf.filter_backends import (
@@ -13,7 +12,6 @@ from elasticsearch_dsl import Q
 
 from api.serializers import LiteratureSerializer
 from api.documents import LiteratureDocument
-from api.models import Literature
 from api.tasks import harvest_hep_data
 from sis_exercise.exceptions import InvalidInputError, InternalServerError, ResourceNotFound
 from sis_exercise.views import ElasticSearchAPIView
