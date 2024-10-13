@@ -65,3 +65,4 @@ Due to the lack of credentials and quota, the OpenAI summarization was mocked as
 
 
 ### API Endpoint
+![Screenshot 2024-10-13 at 17 27 20](https://github.com/user-attachments/assets/b3c3cb6b-7730-4a5b-9a4d-4c999b041e09)
