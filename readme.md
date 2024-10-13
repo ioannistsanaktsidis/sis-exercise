@@ -31,6 +31,8 @@ To run the tests, you can execute:
 For simplicity, this requires the Django app to be running.
 
 ### Frontend (React)
+The frontend was built using Create React App with TypeScript. It also uses Ant Design.
+
 To run the frontend:
 ```bash
     cd ui/
