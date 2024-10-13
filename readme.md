@@ -7,7 +7,7 @@ To run the backend, you can execute:
 ```bash
     make up
     make bootstrap
-    # visit localhost:8000
+    # visit localhost:8000/api/search
 ```
 This will start the Django app and use the default literature fixtures.
 
@@ -15,7 +15,7 @@ You can also run:
 ```bash
     make up
     make bootstrap-full
-    # visit localhost:8000
+    # visit localhost:8000/api/search
 ```
 This will generate a larger list of literature fixtures to test the UI more easily.
 
