@@ -73,7 +73,7 @@ class SearchView(ElasticSearchAPIView):
                     "summary": summary,
                 }, status=status.HTTP_200_OK)
             else:
-                raise InternalServerError(f"Error during fetching data: {response.data}")
+                raise InternalServerError("Error during fetching data")
         except InvalidInputError as e:
             return Response(
                 {"error": str(e)},
